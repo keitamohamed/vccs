@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<AnchorPane prefHeight="701.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.GradePane">
+   <children>
+      <MenuBar prefHeight="45.0" prefWidth="930.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="gExcel" mnemonicParsing="false" text="Export Excel" />
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="gPDF" mnemonicParsing="false" text="Export PDF" />
+                     </graphic>
+                  </MenuItem>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox fx:id="gHBox" alignment="CENTER" layoutY="45.0" prefHeight="65.0" prefWidth="930.0">
+         <children>
+            <Label fx:id="gTitle" alignment="CENTER" text="LIST OF ALL STUDENT WITH THERE GRADE" />
+         </children>
+      </HBox>
+      <Pane layoutY="138.0" prefHeight="513.0" prefWidth="299.0" />
+      <TreeTableView fx:id="table" layoutX="117.0" layoutY="155.0" prefHeight="513.0" prefWidth="696.0">
+        <columns>
+          <TreeTableColumn fx:id="empColumn" prefWidth="120.0" text="EMP ID" />
+            <TreeTableColumn fx:id="cIDColumn" prefWidth="120.0" text="CLASS ID" />
+          <TreeTableColumn fx:id="nameColumn" prefWidth="180.0" text="STUDENT NAME" />
+            <TreeTableColumn fx:id="sNameColumn" prefWidth="180.0" text="SCORE NAME" />
+            <TreeTableColumn fx:id="scoreColumn" prefWidth="95.0" text="SCORE" />
+        </columns>
+      </TreeTableView>
+   </children>
+</AnchorPane>

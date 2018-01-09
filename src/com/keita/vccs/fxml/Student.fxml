@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.StudentController">
+   <children>
+      <MenuBar prefHeight="35.0" prefWidth="1201.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="exportExcel" mnemonicParsing="false" text="Export scorse exc" />
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="eTTrancript" mnemonicParsing="false" text="Export Trans exc" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="exportPDF" mnemonicParsing="false" text="Export PDF" />
+                     </graphic>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Insert">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="More">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="View">
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="profile" mnemonicParsing="false" onAction="#profileFXM" text="Profile" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="transcript" mnemonicParsing="false" onAction="#courseHistoryFXM" text="Course History" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#singOut" prefWidth="91.0" text="Logout">
+                     <opaqueInsets>
+                        <Insets top="-2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="-2.0" />
+                     </padding>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <HBox fx:id="sHBox" alignment="CENTER_RIGHT" layoutX="855.0" layoutY="35.0" prefHeight="68.0" prefWidth="346.0" spacing="40.0">
+         <padding>
+            <Insets right="40.0" />
+         </padding>
+         <children>
+            <Pane prefHeight="68.0" prefWidth="251.0">
+               <children>
+                  <TextField fx:id="search" layoutX="14.0" layoutY="17.0" prefHeight="35.0" prefWidth="231.0" promptText="Enter a search key word" />
+                  <ImageView fx:id="searchIcon" fitHeight="37.0" fitWidth="67.0" layoutX="208.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/find.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane fx:id="sPane" layoutX="-3.0" layoutY="102.0" prefHeight="599.0" prefWidth="358.0">
+         <children>
+            <Label fx:id="titleGA" layoutX="79.0" layoutY="62.0" text="REGISTER FOR CLASS" />
+            <GridPane fx:id="registerPane" layoutX="18.0" layoutY="113.0" prefHeight="395.0" prefWidth="335.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="126.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="209.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="sEmpL" text="Student EMP" />
+                  <Label fx:id="sTechEMPL" text="Teacher EMP" GridPane.rowIndex="1" />
+                  <Label fx:id="sClassIDL" text="Class ID" GridPane.rowIndex="2" />
+                  <Label fx:id="sAssNameL" text="Assigment Name" GridPane.rowIndex="3" />
+                  <TextField fx:id="empT" promptText="Enter student emp" GridPane.columnIndex="1" />
+                  <TextField fx:id="techIDT" promptText="Enter teacher emp" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="classIDT" promptText="Enter class id" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="aNameT" promptText="Enter assignment name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="choseFile" mnemonicParsing="false" prefHeight="27.0" prefWidth="213.0" text="Chose A File" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea fx:id="assignment" prefHeight="87.0" prefWidth="167.0" promptText="Enter comment or assignment" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="submitB" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+            <Separator fx:id="hSeparator" layoutX="18.0" layoutY="90.0" prefWidth="328.0" />
+            <Label fx:id="gradeTitle" layoutX="41.0" layoutY="435.0" text="Current Class Grade:">
+               <padding>
+                  <Insets bottom="1.0" />
+               </padding>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="grade" layoutX="79.0" layoutY="481.0" text="No Grade">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <HBox layoutX="363.0" layoutY="159.0" prefHeight="528.0" prefWidth="457.0" style="-fx-background-color: green;">
+         <children>
+            <TreeTableView fx:id="table" prefHeight="528.0" prefWidth="466.0">
+              <columns>
+                <TreeTableColumn fx:id="tClassID" prefWidth="100.0" text="CLASS ID" />
+                <TreeTableColumn fx:id="tCName" prefWidth="237.0" text="SCORE NAME" />
+                  <TreeTableColumn fx:id="tScore" prefWidth="119.0" text="SCORE" />
+              </columns>
+            </TreeTableView>
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" layoutX="829.0" layoutY="201.0" prefHeight="258.0" prefWidth="358.0">
+         <columns>
+            <TableColumn fx:id="classID" prefWidth="135.0" text="CLASS ID" />
+            <TableColumn fx:id="className" prefWidth="222.0" text="CLASS NAME" />
+         </columns></TableView>
+      <ListView fx:id="upcoming" layoutX="829.0" layoutY="483.0" prefHeight="200.0" prefWidth="358.0" />
+      <Label fx:id="sTitleGA" alignment="CENTER" layoutX="829.0" layoutY="163.0" prefHeight="27.0" prefWidth="358.0" text="List Of Classe's Not Taking" />
+      <HBox fx:id="sHBox" alignment="CENTER" layoutX="-1.0" layoutY="35.0" prefHeight="68.0" prefWidth="856.0" spacing="40.0">
+         <children>
+            <Button fx:id="addClass" mnemonicParsing="false" text="Add Class" />
+            <Button fx:id="assignmentB" mnemonicParsing="false" text="Sub Assgnment" />
+            <Button fx:id="loadData" mnemonicParsing="false" onAction="#loadData" text="LoadData" />
+            <ChoiceBox fx:id="sortBy" prefHeight="39.0" prefWidth="201.0" />
+         </children>
+         <padding>
+            <Insets right="40.0" />
+         </padding>
+      </HBox>
+      <Separator fx:id="hSeparator" layoutX="828.0" layoutY="192.0" prefWidth="350.0" />
+   </children>
+</AnchorPane>

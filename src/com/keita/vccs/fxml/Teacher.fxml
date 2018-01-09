@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="classList" prefHeight="718.0" prefWidth="1231.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.TeacherController">
+   <children>
+      <MenuBar prefHeight="39.0" prefWidth="1247.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="exportExcel" mnemonicParsing="false" text="Export Excel" />
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="exportPDF" mnemonicParsing="false" text="Export PDF" />
+                     </graphic>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Insert">
+            <items>
+              <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="finalGrade" mnemonicParsing="false" onAction="#finalGradeFxml" text="Send Final Grade" />
+                     </graphic></MenuItem>
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="More">
+               <items>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="showGrade" mnemonicParsing="false" onAction="#gradeFxml" text="View Grade" />
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+          <Menu fx:id="mLogout" mnemonicParsing="false">
+               <graphic>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#singOut" prefHeight="10.0" prefWidth="91.0" text="Logout">
+                     <opaqueInsets>
+                        <Insets top="-2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="-2.0" />
+                     </padding>
+                  </Button>
+               </graphic>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <HBox fx:id="hBoxPane" layoutX="393.0" layoutY="119.0" prefHeight="593.0" prefWidth="739.0">
+         <children>
+            <TreeTableView fx:id="table" prefHeight="593.0" prefWidth="743.0">
+              <columns>
+                <TreeTableColumn fx:id="idColumn" minWidth="20.0" prefWidth="108.0" resizable="false" text="EMP (ID)" />
+                  <TreeTableColumn fx:id="classColumn" minWidth="20.0" prefWidth="97.0" resizable="false" text="Class ID" />
+                <TreeTableColumn fx:id="nColumn" prefWidth="166.0" resizable="false" text="Name" />
+                  <TreeTableColumn fx:id="eColumn" prefWidth="207.0" resizable="false" text="Email" />
+                  <TreeTableColumn fx:id="pColumn" prefWidth="160.0" resizable="false" text="Phone Num" />
+              </columns>
+            </TreeTableView>
+         </children>
+      </HBox>
+      <Pane fx:id="leftPanel" layoutY="118.0" prefHeight="593.0" prefWidth="374.0" style="-fx-text-fill: #c6560b;">
+         <children>
+            <GridPane fx:id="scoreAUGridPane" layoutX="23.0" layoutY="75.0" prefHeight="453.0" prefWidth="346.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="122.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="236.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="157.0" minHeight="10.0" prefHeight="157.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="empL" text="Student ID:" />
+                  <Label fx:id="scoreNL" text="Score Name:" GridPane.rowIndex="2" />
+                  <Label fx:id="scoreL" text="Score:" GridPane.rowIndex="3" />
+                  <TextField fx:id="empT" prefHeight="30.0" prefWidth="236.0" promptText="Enter student emp ( ID )" GridPane.columnIndex="1" />
+                  <TextField fx:id="scoreNT" prefHeight="30.0" prefWidth="236.0" promptText="Enter score name( Ex: Home Work 1 )" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="scoreT" prefHeight="30.0" prefWidth="236.0" promptText="Enter score number ( Ex: 93 )" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="nameL" text="Assigm... Name:" GridPane.rowIndex="4" />
+                  <TextField fx:id="nameT" prefHeight="30.0" prefWidth="229.0" promptText="Enter assigement name" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="submitB" mnemonicParsing="false" prefHeight="39.0" prefWidth="247.0" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextArea fx:id="updateReason" minHeight="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
+                  </TextArea>
+                  <Label fx:id="classIDL" text="Class ID" GridPane.rowIndex="1" />
+                  <TextField fx:id="classIDT" prefHeight="30.0" prefWidth="236.0" promptText="Enter class id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label fx:id="titleGA" layoutX="23.0" layoutY="33.0" text="ADD NEW GRADE FOR STUDENT" />
+            <Separator fx:id="hSeparator" layoutX="14.0" layoutY="67.0" prefHeight="3.0" prefWidth="328.0" />
+            <Label fx:id="classTitle" layoutX="23.0" layoutY="482.0" text="Class Average Score:">
+               <font>
+                  <Font name="Cochin Bold Italic" size="22.0" />
+               </font>
+               <padding>
+                  <Insets bottom="1.0" />
+               </padding>
+            </Label>
+            <Label fx:id="classAvg" layoutX="50.0" layoutY="514.0" prefHeight="27.0" prefWidth="223.0" text="No-Class">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+         </children></Pane>
+      <HBox fx:id="tHBox" alignment="CENTER" layoutY="39.0" prefHeight="79.0" prefWidth="1247.0" spacing="10.0">
+         <children>
+            <Button fx:id="gradeB" alignment="CENTER" mnemonicParsing="false" text="Add Grade" />
+            <Button fx:id="updateB" mnemonicParsing="false" text="Update Grade" />
+            <Button fx:id="assignmentB" mnemonicParsing="false" text="Add Assgnment" />
+            <Button fx:id="loadData" mnemonicParsing="false" onAction="#loadDate" text="Load Data" />
+            <Label fx:id="tListClass" text="LIST OF CLASS'S:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="tClassList" />
+            <TextField fx:id="searchField" prefHeight="30.0" prefWidth="190.0" promptText="Enter student id or name" />
+            <Button fx:id="searchB" mnemonicParsing="false" text="Search" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

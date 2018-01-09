@@ -1,0 +1,249 @@
+.button:focused {
+    -fx-focus-colo: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#gradeB, #assignmentB, #updateB, #loadData,
+#loadData, #addClass {
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 16px;
+    -fx-background-color: #9F0B32;
+    -fx-pref-height: 39px;
+    -fx-text-fill: #fff;
+}
+
+#gradeB:hover, #assignmentB:hover, #updateB:hover,
+#loadData:hover, #addClass:hover, #subAsg:hover {
+    -fx-background-color: #49a010;
+    -fx-font-size: 18px;
+}
+
+#fPane, #leftPanel, #sPane {
+    -fx-border-width: 3 0 0 0;
+    -fx-border-color: #fff;
+}
+
+#pHBox, #gHBox {
+    -fx-text-fill: #fff;
+    -fx-padding: 20;
+    -fx-background-image: url("../images/blue-sky.jpg");
+    -fx-background-repeat: no-repeat;
+}
+
+#fHBox, #fPane, #tHBox, #sHBox, #leftPanel, #sPane, #cHHbox {
+    -fx-background-image: url("../images/blue-sky.jpg");
+    -fx-background-repeat: no-repeat;
+}
+
+#sHBox {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: none;
+
+}
+
+#tClassList, #sortBy {
+    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff;
+    -fx-border-style: dotted;
+    -fx-border-width: 1;
+    -fx-border-insets: 0;
+}
+
+#search {
+    -fx-font-size: 16px;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #9F0B32;
+}
+
+#search:hover {
+    -fx-background-color: #fff;
+}
+
+#searchIcon {
+    -fx-border-color: #9F0B32;
+    -fx-border-width: 0 0 1 0;
+}
+
+#logout, #showGrade {
+    -fx-background-color: none;
+    -fx-border-style: none;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 5px;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+}
+
+#exportExcel, #exportPDF, #finalGrade,
+#showGrade, #gExcel, #gPDF, #profile, #transcript,
+#eTTrancript {
+    -fx-font-size: 14px;
+    -fx-background-color: none;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+}
+
+#showGrade {
+    -fx-min-width: 120px;
+}
+
+#exportExcel:hover, #exportPDF:hover, #showGrade:hover,
+#finalGrade:hover, #gExcel:hover, #gPDF:hover, #profile:hover,
+#transcript:hover{
+    -fx-text-fill: #fff;
+}
+
+#logout:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: none;
+    -fx-border-style: none;
+    -fx-pref-height: 5px;
+    -fx-border-width: 0;
+    -fx-border-insets: 0
+}
+
+#searchB, #searchField {
+    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-size: 16px;
+}
+
+#classTitle, #gradeTitle {
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-style: dotted;
+}
+
+#classAvg, #grade {
+    -fx-text-fill: #fff;
+}
+
+#titleGA, #sTitleGA, #cTitle {
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #c6560b;
+    -fx-font-weight: bold;
+}
+
+#cTitle {
+    -fx-text-fill: #fff;
+}
+
+#cTitleT {
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#empT, #classIDT, #scoreNT, #scoreT, #nameT,
+#aNameT, #techIDT, #choseFile {
+    -fx-font-size: 16px;
+}
+
+#updateReason, #assignment {
+    -fx-font-size: 14px
+}
+
+#empL, #scoreNL, #scoreL, #nameL, #classIDL,
+#sClassIDL, #sEmpL, #sTechEMPL, #sAssNameL {
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#cEmpL, #cNameL, #cEmailL, #cNumL, #pEmailL, #pPhoneL, #gEmp, #gName {
+    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+#cEmpT, #cNameT, #cEmailT, #cNumT,
+#pEmpT, #pNameT, #pEmailT, #pPhoneT {
+    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-size: 16px;
+}
+
+#submitB {
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #9F0B32;
+    -fx-font-weight: bold;
+    -fx-border-style: none;
+}
+
+#submitB:hover {
+    -fx-background-color: #49a010;
+}
+
+#hSeparator {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-insets: 0;
+    -fx-border-color: #9F0B32;
+    -fx-background-color: none;
+}
+
+#menuItem:hover {
+    -fx-min-width: 200px;
+}
+
+/*For the grade pane*/
+
+#pAnchorPane {
+    -fx-background-color: #a7a8aa;
+}
+
+#pTitleGA, #gTitle {
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #fff;
+    -fx-padding: 10px 0 0 0;
+    -fx-font-weight: bold;
+}
+
+/*Final grade pane*/
+
+#fTitle {
+    -fx-text-fill: #fff;
+    -fx-font-family: Helvetica, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+#fLabel{
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-family: Helvetica, sans-serif;
+}
+
+#empColumnT, #classColumnT, #nameColumnT,
+#cNameColumnT, #gradeColumnT, #number, #tTerm,
+#datePicker, #unitesT {
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: #16ce29;
+    -fx-font-size: 18px;
+    -fx-background-color: #fff;
+}
+
+#fSubmit {
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-border-style: none;
+    -fx-background-color: #9F0B32;
+}
+
+#fClassType {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 18px;
+    -fx-border-width: none;
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-style: dotted;
+}
+
+/*Student stage*/

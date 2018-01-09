@@ -1,0 +1,44 @@
+.tree-table-header-background {
+    -fx-background-color: #167F92;
+}
+
+.tree-table-row-cell {
+    -fx-background-color: -fx-table-cell-border-color, -fx-control-inner-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: -fx-text-inner-color;
+    -fx-font-size: 16px;
+}
+
+.tree-table-row-cell:selected {
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-focus-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-font-size: 16px;
+}
+
+.tree-table-row-cell:odd {
+    -fx-background-color: -fx-table-cell-border-color, derive(-fx-control-inner-background,-7%);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-font-size: 16px;
+}
+
+.tree-table-row-cell:selected:odd {
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-focus-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-font-size: 16px;
+}
+
+.table-view .column-header {
+    -fx-font-size: 14px;
+    -fx-font-family: Helvetica, sans-serif;
+}
+
+.table-row-cell {
+    -fx-font-size: 16px;
+    -fx-font-family: "Times New Roman";
+}
+
+.table-row-cell:odd{
+    -fx-font-size: 16px;
+    -fx-font-family: "Times New Roman";
+}
