@@ -9,8 +9,6 @@ public class ScoreTable {
     private SimpleStringProperty scoreName;
     private SimpleStringProperty score;
 
-    public ScoreTable (){};
-
     public ScoreTable(String id, String classID, String name, String scoreName, String score) {
         this.id = new SimpleStringProperty(id);
         this.classID = new SimpleStringProperty(classID);

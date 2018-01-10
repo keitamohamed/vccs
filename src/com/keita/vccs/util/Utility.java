@@ -22,21 +22,17 @@ public class Utility extends Calculation{
 
     private static SQLStatement statements = new SQLStatement();
 
-    private static ObservableList<Teacher> teachers;
-    private static ObservableList<Class> classes;
-    private ObservableList<Student> students;
+    private static ObservableList<Teacher> teachers = FXCollections.observableArrayList();;
+    private static ObservableList<Class> classes = FXCollections.observableArrayList();;
+    private ObservableList<Student> students = FXCollections.observableArrayList();;
     private static ObservableList<Student> student = FXCollections.observableArrayList();
-    private ObservableList<Record> records = FXCollections.observableArrayList();
     private static ObservableList<ScoreTable> scoreTables = FXCollections.observableArrayList();
     private static ObservableList<Record> rec = FXCollections.observableArrayList();
-
-    private static boolean run = false;
 
     public static ObservableList<OtherClasses> loadAllData(ObservableList<Teacher> teachers, ObservableList<Class> classes,
                                    ObservableList<Student> students, String userID, String userType) {
 
         ObservableList<OtherClasses> otherClasses = statements.loadDate(teachers, classes, students, userID, userType);
-        scoreTableData(teachers);
         return otherClasses;
     }
 
@@ -93,37 +89,6 @@ public class Utility extends Calculation{
             ms.alert("Number Format Exception", "Please enter a number. " +
                     "Not a String or character.");
         }
-    }
-
-    public static void view(TreeTableView<ScoreTable> treeView, TreeTableColumn<ScoreTable, String> emp,
-                            TreeTableColumn<ScoreTable, String> classID, TreeTableColumn<ScoreTable, String> name,
-                            TreeTableColumn<ScoreTable, String> sName, TreeTableColumn<ScoreTable, String> score) {
-        TreeItem<ScoreTable> newScore;
-
-        if (!run) {
-            for (ScoreTable sc : scoreTables) {
-                newScore = new TreeItem<>(new ScoreTable(sc.getId(), sc.getClassID(),
-                        sc.getName(), sc.getScoreName(), sc.getScore()));
-                scoreItem.getChildren().add(newScore);
-            }
-        }
-
-        run = true;
-
-        emp.setCellValueFactory((TreeTableColumn.CellDataFeatures<ScoreTable, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getId()));
-
-        classID.setCellValueFactory((TreeTableColumn.CellDataFeatures<ScoreTable, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        name.setCellValueFactory((TreeTableColumn.CellDataFeatures<ScoreTable, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
-        sName.setCellValueFactory((TreeTableColumn.CellDataFeatures<ScoreTable, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScoreName()));
-        score.setCellValueFactory((TreeTableColumn.CellDataFeatures<ScoreTable, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScore()));
-
-        treeView.setRoot(scoreItem);
-        treeView.setShowRoot(false);
     }
 
     public static void finalGradeTable(TreeTableView<Record> treeView, TreeItem<Record>
@@ -183,7 +148,6 @@ public class Utility extends Calculation{
             int point = Calculation.addScore(scoreTables, newValue.getValue().getEmp(), newValue.getValue().getClassID());
             letterGrade.setText(Calculation.calculateLetterGrade(point));
         }
-
     }
 
     public void addRecord(String emp, String classId, String sName,
@@ -203,20 +167,6 @@ public class Utility extends Calculation{
     public void exportStudentGrade() {
         export.exportStudentGrade(scoreTables);
         msg.alert("Successfully Exported", "Date was exported successfully as an excel file");
-    }
-
-    private static void scoreTableData(ObservableList<Teacher> teachers) {
-        for (Teacher teach : teachers) {
-            for (Class cal : teach.getClasses()) {
-                for (Student stud : cal.getStudent()) {
-                    addRecord(stud.getId(), cal.getClassID(), stud.getName(), cal.getClassName());
-                    for (Grade grade : stud.getGrades()) {
-                        scoreTables.add(new ScoreTable(stud.getId(), cal.getClassID(),
-                                stud.getName(), grade.getScoreName(), Integer.toString(grade.getScore())));
-                    }
-                }
-            }
-        }
     }
 
     private static void addRecord(String emp, String classID, String name, String classNme) {

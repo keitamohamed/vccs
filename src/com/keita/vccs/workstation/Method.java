@@ -24,7 +24,6 @@ public class Method extends Calculation {
     private ObservableList<Teacher> teachers;
     private ObservableList<Class> classes;
     private ObservableList<Student> students;
-    private ObservableList<Record> records = FXCollections.observableArrayList();
     private static ObservableList<ScoreTable> scoreTables = FXCollections.observableArrayList();
     private static ObservableList<Record> rec = FXCollections.observableArrayList();
 
@@ -36,54 +35,6 @@ public class Method extends Calculation {
         teachers = FXCollections.observableArrayList();
         classes = FXCollections.observableArrayList();
         students = FXCollections.observableArrayList();
-    }
-
-    public static void finalGradeTable(TreeTableView<Record> treeView, TreeItem<Record>
-            record, TreeTableColumn<Record, String> emp, TreeTableColumn<Record, String>
-            classID, TreeTableColumn<Record, String> name, TreeTableColumn<Record, String>
-            className, ChoiceBox<String> classType, ObservableList<String> classList) {
-
-        if (classList.size() == 0) {
-            classList.add("Show All Students");
-            for (Record rd : rec) {
-                if (classList.contains(rd.getClassName())) {
-                    continue;
-                }
-                classList.add(rd.getClassName());
-            }
-
-            classType.setItems(classList);
-            classType.getSelectionModel().selectFirst();
-        }
-
-        TreeItem<Record> newScore;
-
-        for (Record rc : rec) {
-            if (classType.getValue().equals("Show All Students")) {
-                newScore = new TreeItem<>(new Record(rc.getEmp(), rc.getClassID(),
-                        rc.getName(), rc.getClassName()));
-                record.getChildren().add(newScore);
-            }
-
-            if (classType.getValue().equals(rc.getClassName())) {
-                newScore = new TreeItem<>(new Record(rc.getEmp(), rc.getClassID(),
-                        rc.getName(), rc.getClassName()));
-                record.getChildren().add(newScore);
-            }
-        }
-
-        emp.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getEmp()));
-
-        classID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        name.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
-        className.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassName()));
-
-        treeView.setRoot(record);
-        treeView.setShowRoot(false);
     }
 
     public void addRecord(String emp, String classId, String sName,
@@ -103,20 +54,6 @@ public class Method extends Calculation {
     public void exportStudentGrade() {
         export.exportStudentGrade(scoreTables);
         msg.alert("Successfully Exported", "Date was exported successfully as an excel file");
-    }
-
-    private void scoreTableData() {
-        for (Teacher teach : teachers) {
-            for (Class cal : teach.getClasses()) {
-                for (Student stud : cal.getStudent()) {
-                    addRecord(stud.getId(), cal.getClassID(), stud.getName(), cal.getClassName());
-                    for (Grade grade : stud.getGrades()) {
-                        scoreTables.add(new ScoreTable(stud.getId(), cal.getClassID(),
-                                stud.getName(), grade.getScoreName(), Integer.toString(grade.getScore())));
-                    }
-                }
-            }
-        }
     }
 
     private void addRecord(String emp, String classID, String name, String classNme) {

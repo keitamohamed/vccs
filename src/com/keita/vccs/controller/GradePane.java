@@ -47,24 +47,28 @@ public class GradePane {
 
     @FXML
     public void initialize() {
-        Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
-        scoreTableData();
+        if (scoreTables.size() > 0) {
+            scoreTables.clear();
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
+            scoreTableData();
+            scoreItem.getChildren().clear();
+            scoreItem = new TreeItem<>(new ScoreTable("EMP ID", "CLASS ID", "NAME",
+                    "SCORE NAME", "SCORE"));
+        }
+        else {
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
+            scoreTableData();
+        }
         gExcel.setOnAction(e -> {
             method.exportStudentGrade();
         });
+
         view();
     }
 
     public void view() {
         TreeItem<ScoreTable> newScore;
-
-
-        if (scoreItem.getChildren().size() > 0) {
-            table.getColumns().clear();
-            scoreItem.getChildren().clear();
-//            scoreItem = new TreeItem<>(new ScoreTable("EMP ID", "CLASS ID", "NAME",
-//                    "SCORE NAME", "SCORE"));
-        }
+        System.out.println("Teacher " + teachers.size() + " student " + students.size());
 
         for (ScoreTable sc : scoreTables) {
             newScore = new TreeItem<>(new ScoreTable(sc.getId(), sc.getClassID(),
