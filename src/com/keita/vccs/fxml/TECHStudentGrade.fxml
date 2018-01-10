@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<AnchorPane prefHeight="701.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.GradePane">
+<AnchorPane prefHeight="701.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.TECHGradeController">
    <children>
       <MenuBar prefHeight="45.0" prefWidth="930.0">
         <menus>

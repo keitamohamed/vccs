@@ -416,7 +416,7 @@ public class TeacherController extends Controller{
 
     @FXML
     public void gradeFxml()  {
-        associate.changeStage("../fxml/GradePane.fxml", "List Of Student's And Grade");
+        associate.changeStage("../fxml/TECHStudentGrade.fxml", "List Of Student's And Grade");
     }
 
     @FXML

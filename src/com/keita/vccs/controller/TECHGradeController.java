@@ -1,31 +1,19 @@
 package com.keita.vccs.controller;
 
-import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
+import com.keita.vccs.blueprint.*;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.workstation.Method;
-import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-
-public class GradePane {
+public class TECHGradeController {
 
     @FXML private TreeTableView<ScoreTable> table;
     @FXML private TreeTableColumn<ScoreTable, String> empColumn;
