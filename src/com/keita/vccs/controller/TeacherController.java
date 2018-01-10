@@ -30,7 +30,7 @@ public class TeacherController extends Controller{
     @FXML private Label empL, scoreNL, nameL, scoreL, classIDL, titleGA, classAvg;
     @FXML private TextField empT, scoreNT, scoreT, nameT, classIDT, searchField;
     @FXML private TextArea updateReason;
-    @FXML private Button submitB, gradeB, updateB, assignmentB, loadData, exportExcel;
+    @FXML private Button submitB, gradeB, updateB, assignmentB, exportExcel;
     @FXML private GridPane scoreAUGridPane;
     @FXML private TreeTableView<Student> table;
     @FXML private TreeTableColumn<Student, String> idColumn;

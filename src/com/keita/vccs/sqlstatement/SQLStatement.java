@@ -402,7 +402,7 @@ public class SQLStatement {
 
     }
 
-    public void registerForClass(String emp, String techEMP, String classID) {
+    public static void registerForClass(String emp, String techEMP, String classID) {
         connection = null;
         pStatement = null;
 

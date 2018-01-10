@@ -8,7 +8,6 @@ import com.keita.vccs.controller.StudentController;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.workstation.Calculation;
-import com.keita.vccs.workstation.Validation;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -188,9 +187,5 @@ public class Utility extends Calculation{
             }
         }
         return false;
-    }
-
-    public boolean doClassExist(String id) {
-        return validation.isClassExist(classes, id);
     }
 }

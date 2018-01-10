@@ -5,7 +5,9 @@ import com.keita.vccs.associate.OtherClasses;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.message.Message;
+import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.util.Utility;
+import com.keita.vccs.util.Validation;
 import com.keita.vccs.workstation.Method;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -18,7 +20,6 @@ import javafx.scene.layout.GridPane;
 
 public class StudentController extends Controller{
     public static String userID, userType;
-    private Method method = new Method();
     private Associate associate = new Associate();
     private Message msg = new Message();
 
@@ -82,9 +83,8 @@ public class StudentController extends Controller{
 
         submitB.setOnAction(e -> {
             if (!empT.getText().equals("") && !techIDT.getText().equals("") &&
-                    !classIDT.getText().equals("") && !method.doClassExist(classIDT.getText())) {
-                method.registerForClass(empT.getText(), techIDT.getText(),
-                        classIDT.getText(), aNameT);
+                    !classIDT.getText().equals("") && !Validation.classExist(classes, classIDT.getText())) {
+                register(empT.getText(), techIDT.getText(), classIDT.getText(), aNameT);
                 loadData();
                 msg.alert("Successfully Added", (classIDT.getText() + " was " +
                         "successfully added to your class list"));
@@ -186,6 +186,15 @@ public class StudentController extends Controller{
 
         table.setRoot(studentTreeItem);
         table.setShowRoot(false);
+    }
+
+    public void register(String emp, String techEMP, String classID, TextField aNameT) {
+        if (!aNameT.isVisible()) {
+            SQLStatement.registerForClass(emp, techEMP, classID);
+        }else {
+            // Assignment code go here
+
+        }
     }
 
     @FXML

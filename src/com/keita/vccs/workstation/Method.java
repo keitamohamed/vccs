@@ -3,16 +3,12 @@ package com.keita.vccs.workstation;
 import com.keita.vccs.associate.Export;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
-import com.keita.vccs.controller.StudentController;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
-import javafx.beans.property.ReadOnlyStringWrapper;
+import com.keita.vccs.util.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Method extends Calculation {
 
@@ -75,10 +71,6 @@ public class Method extends Calculation {
             }
         }
         return false;
-    }
-
-    public boolean doClassExist(String id) {
-        return validation.isClassExist(classes, id);
     }
 }
 

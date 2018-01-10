@@ -1,15 +1,11 @@
-package com.keita.vccs.workstation;
+package com.keita.vccs.util;
 
 import com.keita.vccs.blueprint.Class;
 import javafx.collections.ObservableList;
 
 public class Validation {
 
-    public boolean isClassExist(ObservableList<Class> classes, String classID) {
-        return classExist(classes, classID);
-    }
-
-    private boolean classExist(ObservableList<Class> classes, String classID) {
+    public static boolean classExist(ObservableList<Class> classes, String classID) {
         for (Class cal : classes) {
             if (cal.getClassID().equals(classID)) {
                 return true;
@@ -17,6 +13,4 @@ public class Validation {
         }
         return false;
     }
-
-
 }
