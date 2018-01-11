@@ -42,7 +42,7 @@ public class Associate {
     public void singOut(Event event) {
         try {
             ((Node)event.getSource()).getScene().getWindow().hide();
-            Parent vccs = FXMLLoader.load(getClass().getResource("../fxml/main.fxml"));
+            Parent vccs = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));
             Stage stage = new Stage();
             Scene gLScene = new Scene(vccs);
             gLScene.getStylesheets().add(getClass().getResource("../css/Login.css").toExternalForm());
