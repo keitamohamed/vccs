@@ -1,10 +1,11 @@
 package com.keita.vccs.controller;
 
-import com.keita.vccs.blueprint.Record;
+import com.keita.vccs.blueprint.Class;
+import com.keita.vccs.blueprint.*;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.util.Utility;
-import com.keita.vccs.workstation.Method;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,27 +24,42 @@ public class FinalGrade {
     @FXML private DatePicker datePicker;
     @FXML private Button fSubmit;
 
+    private static ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+    private static ObservableList<Class> classes = FXCollections.observableArrayList();
+    private ObservableList<Student> students = FXCollections.observableArrayList();
+    private static ObservableList<ScoreTable> score = FXCollections.observableArrayList();
+
     private ObservableList<String> classList = FXCollections.observableArrayList();
 
     private static TreeItem<Record> record = new TreeItem<>(new Record("EMP ID", "CLASS ID", "STUDENT NAME", "CLASS NAME"));
 
     @FXML
     public void initialize() {
-        if (classList.size() == 0) {
+
+        if (teachers.size() == 0) {
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
+            classTypeAddData();
+            sortByClass(fClassType.getSelectionModel().getSelectedItem());
+        }
+        else {
             record.getChildren().clear();
             record = new TreeItem<>(new Record("EMP ID", "CLASS ID", "STUDENT NAME", "CLASS NAME"));
-            Utility.finalGradeTable(table, record, empColumn, cIDColumn, nameColumn,
-                    cNameColumn, fClassType, classList);
+            classTypeAddData();
+            sortByClass(fClassType.getSelectionModel().getSelectedItem());
         }
 
         fClassType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             record.getChildren().clear();
             clearTextField();
             record = new TreeItem<>(new Record("EMP ID", "CLASS ID", "STUDENT NAME", "CLASS NAME"));
-            Utility.finalGradeTable(table, record, empColumn, cIDColumn, nameColumn,
-                    cNameColumn, fClassType, classList);
+            sortByClass(newValue);
         });
-        table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> Utility.finalGradeText(newValue, empColumnT, classColumnT, nameColumnT, cNameColumnT, gradeColumnT));
+
+        table.getSelectionModel().selectedItemProperty().addListener((observable, old, newValue) -> {
+            addScore();
+            Utility.finalGradeText(score, newValue, empColumnT, classColumnT, nameColumnT, cNameColumnT, gradeColumnT);
+        });
+
         number.textProperty().addListener((observable, oldValue, newValue) ->
                 Utility.calculateGrade(empColumnT.getText(), classColumnT.getText(), newValue, gradeColumnT));
 
@@ -61,12 +77,67 @@ public class FinalGrade {
         });
     }
 
+
+    private void addScore() {
+        for (Class cal : classes) {
+            for (Student stud : cal.getStudent()) {
+                for (Grade grade : stud.getGrades()) {
+                    score.add(new ScoreTable(stud.getId(), cal.getClassID(), stud.getName(),
+                            grade.getScoreName(), Integer.toString(grade.getScore())));
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void sortByClass(String newValue) {
+        TreeItem<Record> rec;
+
+        for (Teacher teach : teachers) {
+            for (Class cla : teach.getClasses()) {
+                for (Student stud : cla.getStudent()) {
+                    if (cla.getClassName().equals(newValue)) {
+                        rec = new TreeItem<>(new Record(stud.getId(), cla.getClassID(), stud.getName(), cla.getClassName()));
+                        record.getChildren().add(rec);
+                    }
+                    if (newValue.equals("Show All Students")) {
+                        rec = new TreeItem<>(new Record(stud.getId(), cla.getClassID(), stud.getName(), cla.getClassName()));
+                        record.getChildren().add(rec);
+                    }
+                }
+            }
+        }
+
+        empColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
+                new ReadOnlyStringWrapper(param.getValue().getValue().getEmp()));
+        cIDColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
+                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
+        nameColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
+                new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
+        cNameColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
+                new ReadOnlyStringWrapper(param.getValue().getValue().getClassName()));
+
+        table.setRoot(record);
+        table.setShowRoot(false);
+    }
+
+    private void classTypeAddData() {
+        if (classList.size() > 0) {
+            classList.clear();
+        }
+        classList.add("Show All Students");
+        classes.forEach(e -> classList.add(e.getClassName()));
+        fClassType.setItems(classList);
+        fClassType.getSelectionModel().selectFirst();
+    }
+
     @FXML
     private void clearTextField() {
         empColumnT.clear();
         classColumnT.clear();
         nameColumnT.clear();
         cNameColumnT.clear();
+        gradeColumnT.clear();
     }
 
     @FXML
@@ -75,5 +146,4 @@ public class FinalGrade {
                 !tTerm.getText().equals("") && !cNameColumnT.getText().equals("") && !gradeColumnT.getText().equals("") &&
                 !unitesT.getText().equals("");
     }
-
 }

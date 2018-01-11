@@ -1,11 +1,10 @@
-package com.keita.vccs.workstation;
+package com.keita.vccs.calculate;
 
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.message.Message;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 
 public abstract class Calculation {
     private static Message msg = new Message();

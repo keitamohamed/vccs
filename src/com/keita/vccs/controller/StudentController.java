@@ -8,7 +8,6 @@ import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.util.Validation;
-import com.keita.vccs.workstation.Method;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

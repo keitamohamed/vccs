@@ -3,7 +3,6 @@ package com.keita.vccs.controller;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.util.Utility;
-import com.keita.vccs.workstation.Method;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +21,6 @@ public class TECHGradeController {
     @FXML private TreeTableColumn<ScoreTable, String> sNameColumn;
     @FXML private TreeTableColumn<ScoreTable, String> scoreColumn;
     @FXML private Button gExcel;
-    private Method method = new Method();
 
     private static ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private static ObservableList<Class> classes = FXCollections.observableArrayList();
@@ -48,7 +46,7 @@ public class TECHGradeController {
             scoreTableData();
         }
         gExcel.setOnAction(e -> {
-            method.exportStudentGrade();
+//            method.exportStudentGrade();
         });
 
         view();

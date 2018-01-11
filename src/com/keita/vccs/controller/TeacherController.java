@@ -9,7 +9,6 @@ import com.keita.vccs.blueprint.Teacher;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.util.Utility;
-import com.keita.vccs.workstation.Method;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

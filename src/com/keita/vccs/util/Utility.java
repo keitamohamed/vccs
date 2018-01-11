@@ -7,23 +7,18 @@ import com.keita.vccs.blueprint.*;
 import com.keita.vccs.controller.StudentController;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sqlstatement.SQLStatement;
-import com.keita.vccs.workstation.Calculation;
-import javafx.beans.property.ReadOnlyStringWrapper;
+import com.keita.vccs.calculate.Calculation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 
 public class Utility extends Calculation{
     private Message msg = new Message();
-    private Validation validation = new Validation();
     private static Message ms = new Message();
     private Export export = new Export();
 
     private static SQLStatement statements = new SQLStatement();
 
-    private static ObservableList<Teacher> teachers = FXCollections.observableArrayList();;
-    private static ObservableList<Class> classes = FXCollections.observableArrayList();;
-    private ObservableList<Student> students = FXCollections.observableArrayList();;
     private static ObservableList<Student> student = FXCollections.observableArrayList();
     private static ObservableList<ScoreTable> scoreTables = FXCollections.observableArrayList();
     private static ObservableList<Record> rec = FXCollections.observableArrayList();
@@ -33,16 +28,6 @@ public class Utility extends Calculation{
 
         ObservableList<OtherClasses> otherClasses = statements.loadDate(teachers, classes, students, userID, userType);
         return otherClasses;
-    }
-
-    private SQLStatement statement = new SQLStatement();
-    private static TreeItem<ScoreTable> scoreItem = new TreeItem<>(new ScoreTable("EMP ID", "CLASS ID", "NAME",
-            "SCORE NAME", "SCORE"));
-
-    public Utility() {
-        teachers = FXCollections.observableArrayList();
-        classes = FXCollections.observableArrayList();
-        students = FXCollections.observableArrayList();
     }
 
     public static void loadStudentInfo() {
@@ -90,55 +75,7 @@ public class Utility extends Calculation{
         }
     }
 
-    public static void finalGradeTable(TreeTableView<Record> treeView, TreeItem<Record>
-            record, TreeTableColumn<Record, String> emp, TreeTableColumn<Record, String>
-                                               classID, TreeTableColumn<Record, String> name, TreeTableColumn<Record, String>
-                                               className, ChoiceBox<String> classType, ObservableList<String> classList) {
-
-        if (classList.size() == 0) {
-            classList.add("Show All Students");
-            for (Record rd : rec) {
-                if (classList.contains(rd.getClassName())) {
-                    continue;
-                }
-                classList.add(rd.getClassName());
-            }
-
-            classType.setItems(classList);
-            classType.getSelectionModel().selectFirst();
-        }
-
-        TreeItem<Record> newScore;
-
-        for (Record rc : rec) {
-            if (classType.getValue().equals("Show All Students")) {
-                newScore = new TreeItem<>(new Record(rc.getEmp(), rc.getClassID(),
-                        rc.getName(), rc.getClassName()));
-                record.getChildren().add(newScore);
-            }
-
-            if (classType.getValue().equals(rc.getClassName())) {
-                newScore = new TreeItem<>(new Record(rc.getEmp(), rc.getClassID(),
-                        rc.getName(), rc.getClassName()));
-                record.getChildren().add(newScore);
-            }
-        }
-
-        emp.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getEmp()));
-
-        classID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        name.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
-        className.setCellValueFactory((TreeTableColumn.CellDataFeatures<Record, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassName()));
-
-        treeView.setRoot(record);
-        treeView.setShowRoot(false);
-    }
-
-    public static void finalGradeText(TreeItem<Record> newValue, TextField emp, TextField classID, TextField name, TextField className, TextField letterGrade) {
+    public static void finalGradeText(ObservableList<ScoreTable> scoreTables, TreeItem<Record> newValue, TextField emp, TextField classID, TextField name, TextField className, TextField letterGrade) {
         if (newValue != null) {
             emp.setText(newValue.getValue().getEmp());
             classID.setText(newValue.getValue().getClassID());
@@ -146,20 +83,6 @@ public class Utility extends Calculation{
             className.setText(newValue.getValue().getClassName());
             int point = Calculation.addScore(scoreTables, newValue.getValue().getEmp(), newValue.getValue().getClassID());
             letterGrade.setText(Calculation.calculateLetterGrade(point));
-        }
-    }
-
-    public void addRecord(String emp, String classId, String sName,
-                          String cName, String unite, String grade, String term, String date) {
-        statement.addRecord(emp, classId, sName, cName, unite, grade, term, date);
-    }
-
-    public void registerForClass(String emp, String techEMP, String classID, TextField aNameT) {
-        if (!aNameT.isVisible()) {
-            statement.registerForClass(emp, techEMP, classID);
-        }else {
-            // Assignment code go here
-
         }
     }
 

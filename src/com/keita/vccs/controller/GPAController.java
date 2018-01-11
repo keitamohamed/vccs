@@ -3,20 +3,15 @@ package com.keita.vccs.controller;
 import com.keita.vccs.blueprint.Record;
 import com.keita.vccs.sqlstatement.SQLStatement;
 import com.keita.vccs.util.Utility;
-import com.keita.vccs.workstation.Calculation;
-import com.keita.vccs.workstation.Method;
+import com.keita.vccs.calculate.Calculation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
 public class GPAController {
-
-    private Method method = new Method();
 
     @FXML private Label pEmpT, pNameT, pEmailT, pPhoneT;
     @FXML private LineChart lineChart;
