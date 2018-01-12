@@ -3,6 +3,7 @@ package com.keita.vccs.controller;
 import com.keita.vccs.connection.MySQLConnection;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sql.SQLStatement;
+import com.keita.vccs.stage.StageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -70,39 +71,10 @@ public class Controller {
         String userID = checkLogin(lUsernameT.getText().trim(),
                 lPasswordT.getText().trim());
         if (isFiledOut() && connectCheck() != null && userID != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                AnchorPane teacherPane = loader.load(getClass().getResource(fxml));
-                sendID(userID, userType.getSelectionModel().getSelectedItem());
-                loader.setRoot(teacherPane);
-                Scene tScene = new Scene(teacherPane);
-                Stage tStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                tStage.setScene(tScene);
-                tStage.setTitle(title);
-                tStage.setResizable(false);
-                tStage.getScene().getStylesheets().add(getClass().getResource("../css/Table.css").toExternalForm());
-                tStage.getScene().getStylesheets().add(getClass().getResource("../css/Main.css").toExternalForm());
-                tStage.getScene().getStylesheets().add(getClass().getResource("../css/Message.css").toExternalForm());
-                tStage.show();
-            }
-            catch (IOException io) {
-                io.printStackTrace();
-                System.out.println("IO-Exception " + io.fillInStackTrace());
-            }
+            String selectedType = userType.getSelectionModel().getSelectedItem();
+            StageManager.switchStage(event, fxml, userID, selectedType, title);
         }
     }
-
-    private void sendID(String userID, String userType) {
-        if (userType.equals("Teacher")) {
-            TeacherController.userID(userID, userType);
-        }
-        else if (userID.equals("Admin")) {
-
-        }else {
-            StudentController.userID(userID, userType);
-        }
-    }
-
 
     @FXML
     public void singOut(Event event) {

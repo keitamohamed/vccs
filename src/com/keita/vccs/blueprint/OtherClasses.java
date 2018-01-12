@@ -1,4 +1,4 @@
-package com.keita.vccs.associate;
+package com.keita.vccs.blueprint;
 
 import javafx.beans.property.SimpleStringProperty;
 

@@ -1,6 +1,6 @@
 package com.keita.vccs.controller;
 
-import com.keita.vccs.associate.Associate;
+import com.keita.vccs.stage.StageManager;
 import com.keita.vccs.util.Export;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.Grade;
@@ -23,7 +23,6 @@ import java.util.List;
 
 public class TeacherController extends Controller{
     public static String userID, userType;
-    private Associate associate = new Associate();
     private Message Message = new Message();
 
     @FXML private Label empL, scoreNL, nameL, scoreL, classIDL, titleGA, classAvg;
@@ -406,17 +405,17 @@ public class TeacherController extends Controller{
     @FXML
     @Override
     public void singOut(Event event) {
-        associate.singOut(event);
+        StageManager.singOut(event);
     }
 
     @FXML
     public void gradeFxml()  {
-        associate.changeStage("../fxml/TECHStudentGrade.fxml", "List Of Student's And Grade");
+        StageManager.switchScene("../fxml/TECHStudentGrade.fxml", "List Of Student's And Grade");
     }
 
     @FXML
     public void finalGradeFxml()  {
-        associate.changeStage("../fxml/FinalGrade.fxml", "Student Final Grade");
+        StageManager.switchScene("../fxml/FinalGrade.fxml", "Student Final Grade");
     }
 
     public static void userID(String id, String type) {

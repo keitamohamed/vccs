@@ -1,6 +1,6 @@
 package com.keita.vccs.util;
 
-import com.keita.vccs.associate.OtherClasses;
+import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.controller.StudentController;

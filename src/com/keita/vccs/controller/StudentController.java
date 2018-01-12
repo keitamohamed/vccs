@@ -1,7 +1,7 @@
 package com.keita.vccs.controller;
 
-import com.keita.vccs.associate.Associate;
-import com.keita.vccs.associate.OtherClasses;
+import com.keita.vccs.stage.StageManager;
+import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.message.Message;
@@ -19,7 +19,6 @@ import javafx.scene.layout.GridPane;
 
 public class StudentController extends Controller{
     public static String userID, userType;
-    private Associate associate = new Associate();
 
     @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, grade, titleGA;
     @FXML private TextField empT, techIDT, classIDT, aNameT;
@@ -259,12 +258,11 @@ public class StudentController extends Controller{
 
     @FXML
     private void profileFXM() {
-        associate.changeStage("../fxml/GPA.fxml", "Student GPA");
+        StageManager.switchScene("../fxml/GPA.fxml", "Student GPA");
     }
 
     @FXML
-    private void courseHistoryFXM() {
-        associate.changeStage("../fxml/CourseHistory.fxml", "Course History");
+    private void courseHistoryFXM() {StageManager.switchScene("../fxml/CourseHistory.fxml", "Course History");
     }
 
     @FXML
@@ -278,7 +276,7 @@ public class StudentController extends Controller{
     @FXML
     @Override
     public void singOut(Event event) {
-        associate.singOut(event);
+        StageManager.singOut(event);
     }
 
     public static void userID(String id, String type) {
