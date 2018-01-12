@@ -16,11 +16,11 @@
             <items>
               <MenuItem mnemonicParsing="false">
                      <graphic>
-                        <Button fx:id="exportExcel" mnemonicParsing="false" text="Export scorse exc" />
+                        <Button fx:id="exportExcel" mnemonicParsing="false" text="Export Scorse As Exc" />
                      </graphic></MenuItem>
                   <MenuItem mnemonicParsing="false">
                      <graphic>
-                        <Button fx:id="eTTrancript" mnemonicParsing="false" text="Export Trans exc" />
+                        <Button fx:id="eTTrancript" mnemonicParsing="false" text="Export Un-Register C As Exc" />
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false">
@@ -44,7 +44,7 @@
               <items>
                 <MenuItem mnemonicParsing="false">
                      <graphic>
-                        <Button fx:id="profile" mnemonicParsing="false" onAction="#profileFXM" text="Profile" />
+                        <Button fx:id="gpaButton" mnemonicParsing="false" onAction="#profileFXM" text="GPA" />
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false">

@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.CurseHistoryController">
    <children>
-      <HBox fx:id="cHHbox" alignment="CENTER" prefHeight="80.0" prefWidth="1000.0">
+      <HBox fx:id="cHHbox" alignment="CENTER" layoutY="31.0" prefHeight="80.0" prefWidth="1000.0">
          <children>
             <Label fx:id="cTitle" text="STUDENT COURSE HISTORY" />
          </children>
@@ -51,5 +51,28 @@
             </TableView>
          </children>
       </Pane>
+      <MenuBar prefHeight="39.0" prefWidth="1000.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="exportExcel" mnemonicParsing="false" onAction="#exportExcel" text="Export to Excel" />
+                     </graphic>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

@@ -1,12 +1,11 @@
 package com.keita.vccs.util;
 
-import com.keita.vccs.associate.Export;
 import com.keita.vccs.associate.OtherClasses;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.controller.StudentController;
 import com.keita.vccs.message.Message;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.calculate.Calculation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,7 +53,7 @@ public class Utility extends Calculation{
             letterGrade.setText(calculateLetterGrade(grade));
 
         }catch (NumberFormatException nf) {
-            ms.alert("Number Format Exception", "Please enter a number. " +
+            Message.errorRequire("Number Format Exception", "Please enter a number. " +
                     "Not a String or character.");
         }
 
@@ -70,7 +69,7 @@ public class Utility extends Calculation{
             }
 
         }catch (NumberFormatException nf) {
-            ms.alert("Number Format Exception", "Please enter a number. " +
+            Message.errorRequire("Number Format Exception", "Please enter a number. " +
                     "Not a String or character.");
         }
     }
@@ -88,7 +87,7 @@ public class Utility extends Calculation{
 
     public void exportStudentGrade() {
         export.exportStudentGrade(scoreTables);
-        msg.alert("Successfully Exported", "Date was exported successfully as an excel file");
+        Message.errorRequire("Successfully Exported", "Date was exported successfully as an excel file");
     }
 
     private static void addRecord(String emp, String classID, String name, String classNme) {

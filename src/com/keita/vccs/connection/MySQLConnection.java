@@ -38,10 +38,10 @@ public class MySQLConnection implements ConnectionType {
         }
         catch (IllegalAccessException e) {
             String errorM = "IllegalAccessException.\n" + e.getStackTrace();
-            message.alert("Illegal Access Exception", errorM);
+            Message.errorRequire("Illegal Access Exception", errorM);
         } catch (InstantiationException e) {
             String errorM = "InstantiationException.\n" + e.getStackTrace();
-            message.alert("Instantiation Exception", errorM);
+            Message.errorRequire("Instantiation Exception", errorM);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -54,7 +54,7 @@ public class MySQLConnection implements ConnectionType {
         catch (SQLException | NullPointerException sql) {
             String errorM = "Not able to connect to the database. " +
                     "Please make server username and password are correct. " + sql.getMessage();
-            message.alert("Error Connecting", errorM);
+            Message.errorRequire("Error Connecting", errorM);
         }
         return connection;
     }
@@ -78,7 +78,7 @@ public class MySQLConnection implements ConnectionType {
             url = prop.getProperty("url");
 
         } catch (Exception e) {
-            message.alert("IO-Exception", e.getMessage());
+            Message.errorRequire("IO-Exception", e.getMessage());
         } finally {
             assert inputStream != null;
             inputStream.close();

@@ -76,7 +76,7 @@
 }
 
 #exportExcel, #exportPDF, #finalGrade,
-#showGrade, #gExcel, #gPDF, #profile, #transcript,
+#showGrade, #gExcel, #gPDF, #gpaButton, #transcript,
 #eTTrancript {
     -fx-font-size: 14px;
     -fx-background-color: none;
@@ -90,7 +90,7 @@
 }
 
 #exportExcel:hover, #exportPDF:hover, #showGrade:hover,
-#finalGrade:hover, #gExcel:hover, #gPDF:hover, #profile:hover,
+#finalGrade:hover, #gExcel:hover, #gPDF:hover, #gpaButton:hover,
 #transcript:hover{
     -fx-text-fill: #fff;
 }

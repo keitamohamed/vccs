@@ -5,7 +5,7 @@ import com.keita.vccs.associate.OtherClasses;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.message.Message;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.util.Validation;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -20,7 +20,6 @@ import javafx.scene.layout.GridPane;
 public class StudentController extends Controller{
     public static String userID, userType;
     private Associate associate = new Associate();
-    private Message msg = new Message();
 
     @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, grade, titleGA;
     @FXML private TextField empT, techIDT, classIDT, aNameT;
@@ -85,11 +84,11 @@ public class StudentController extends Controller{
                     !classIDT.getText().equals("") && !Validation.classExist(classes, classIDT.getText())) {
                 register(empT.getText(), techIDT.getText(), classIDT.getText(), aNameT);
                 loadData();
-                msg.alert("Successfully Added", (classIDT.getText() + " was " +
+                Message.errorRequire("Successfully Added", (classIDT.getText() + " was " +
                         "successfully added to your class list"));
             }
             else {
-                msg.alert("Not Added", (classIDT.getText() + " was not added to your class " +
+                Message.errorRequire("Not Added", (classIDT.getText() + " was not added to your class " +
                         "list because you are\nalready resisted in this class."));
             }
         });

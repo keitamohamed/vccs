@@ -1,7 +1,8 @@
 package com.keita.vccs.controller;
 
 import com.keita.vccs.blueprint.Record;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
+import com.keita.vccs.util.Export;
 import com.keita.vccs.util.Utility;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,5 +46,10 @@ public class CurseHistoryController {
         }
         table.setItems(records);
         table.getColumns().addAll(cTEmp, cTName, cTUnites, cTGrade, cTTerm, cYear);
+    }
+
+    @FXML
+    private void exportExcel() {
+        Export.exportCourseHistory(table);
     }
 }

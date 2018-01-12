@@ -1,7 +1,7 @@
 package com.keita.vccs.controller;
 
 import com.keita.vccs.blueprint.Record;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.calculate.Calculation;
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package com.keita.vccs.sqlstatement;
+package com.keita.vccs.sql;
 
 import com.keita.vccs.associate.OtherClasses;
 import com.keita.vccs.blueprint.*;
@@ -54,7 +54,7 @@ public class SQLStatement {
                 closeConnection();
             } catch (SQLException sql) {
                 String message = "An SQL-Exception: " + sql.getMessage();
-                msg.alert("SQL-Exception", message);
+                Message.errorRequire("SQL-Exception", message);
             }
         }
         return id;
@@ -262,7 +262,7 @@ public class SQLStatement {
             }
         }
         catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -296,7 +296,7 @@ public class SQLStatement {
             }
         }
         catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -327,7 +327,7 @@ public class SQLStatement {
 
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -357,7 +357,7 @@ public class SQLStatement {
             pStatement.executeUpdate();
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -373,24 +373,46 @@ public class SQLStatement {
                           String grade, String term, String year) {
         connection = null;
         pStatement = null;
+        boolean present = false;
 
         try {
+
             connection = connect.mysql();
-            pStatement = connection.prepareStatement(query.getAddRecord());
+            pStatement = connection.prepareStatement(query.isRecordPresent());
 
-            pStatement.setInt(1, Integer.parseInt(emp));
+            pStatement.setString(1, emp);
             pStatement.setString(2, classId);
-            pStatement.setString(3, sName);
-            pStatement.setString(4, cName);
-            pStatement.setInt(5, Integer.parseInt(unite));
-            pStatement.setString(6, grade);
-            pStatement.setString(7, term);
-            pStatement.setString(8, year);
 
-            pStatement.executeUpdate();
+            ResultSet rs = pStatement.executeQuery();
+
+            if (rs.first()) {
+                present = true;
+            }
+
+            if (!present) {
+                connection = connect.mysql();
+                pStatement = connection.prepareStatement(query.getAddRecord());
+
+                pStatement.setInt(1, Integer.parseInt(emp));
+                pStatement.setString(2, classId);
+                pStatement.setString(3, sName);
+                pStatement.setString(4, cName);
+                pStatement.setInt(5, Integer.parseInt(unite));
+                pStatement.setString(6, grade);
+                pStatement.setString(7, term);
+                pStatement.setString(8, year);
+                pStatement.executeUpdate();
+
+                Message.successfult("Successfully Inserted", ("Grade was added successfully " +
+                        "for " + sName));
+            }else {
+                Message.exist("Record Exist",
+                        ("Couldn't submit " + sName + " final " + cName + " grade because\n" +
+                                "it already exist in the recode. Contact Admin for further assistance."));
+            }
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -399,7 +421,6 @@ public class SQLStatement {
                 System.out.println(sql.getMessage());
             }
         }
-
     }
 
     public static void registerForClass(String emp, String techEMP, String classID) {
@@ -417,7 +438,7 @@ public class SQLStatement {
             pStatement.executeUpdate();
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            msg.alert("IO OR SQL Exception", ex.getMessage());
+            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {

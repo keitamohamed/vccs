@@ -3,7 +3,7 @@ package com.keita.vccs.controller;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.message.Message;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -68,10 +68,8 @@ public class FinalGrade {
                 SQLStatement.addRecord(empColumnT.getText(), classColumnT.getText(), nameColumnT.getText(), cNameColumnT.getText(),
                         unitesT.getText(), gradeColumnT.getText(), tTerm.getText(),
                         Integer.toString(datePicker.getValue().getYear()));
-                message.alert("Successfully Inserted", ("Grade was added successfully " +
-                        "for " + nameColumnT.getText()));
             } else {
-                message.alert("Field's Require", ("All filed's are require. " +
+                Message.errorRequire("Field's Require", ("All filed's are require. " +
                         "Please make sure all field have a value."));
             }
         });

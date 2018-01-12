@@ -35,7 +35,7 @@ public abstract class Calculation {
                     "total number of (Test + Assignment + Home-work + Mid-term and Exam) is " +
                     "" + counter + ". Ether enter a number less then " + counter + " or the " +
                     "student grade will be reset back.";
-            msg.alert("Invalid Input", message);
+            Message.errorRequire("Invalid Input", message);
         }
         return addScore(scoreTables, emp, classID);
     }
@@ -132,7 +132,7 @@ public abstract class Calculation {
 
     public static String calculateLetterGrade(int grade) {
         if (grade > 110) {
-            msg.alert("Instructor Error", ("You make an error. " +
+            Message.errorRequire("Instructor Error", ("You make an errorRequire. " +
                     "Student can't have " + grade + " it must be 110 " +
                     "or lower then that." ));
         }

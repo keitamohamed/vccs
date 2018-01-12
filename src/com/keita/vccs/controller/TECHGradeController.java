@@ -2,6 +2,7 @@ package com.keita.vccs.controller;
 
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
+import com.keita.vccs.util.Export;
 import com.keita.vccs.util.Utility;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -45,16 +46,13 @@ public class TECHGradeController {
             Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
             scoreTableData();
         }
-        gExcel.setOnAction(e -> {
-//            method.exportStudentGrade();
-        });
+        gExcel.setOnAction(e -> Export.exportStudentGrade(scoreTables));
 
         view();
     }
 
     public void view() {
         TreeItem<ScoreTable> newScore;
-        System.out.println("Teacher " + teachers.size() + " student " + students.size());
 
         for (ScoreTable sc : scoreTables) {
             newScore = new TreeItem<>(new ScoreTable(sc.getId(), sc.getClassID(),

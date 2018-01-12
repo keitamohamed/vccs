@@ -1,4 +1,4 @@
-package com.keita.vccs.sqlstatement;
+package com.keita.vccs.sql;
 
 public class SQLQuery {
 
@@ -107,5 +107,10 @@ public class SQLQuery {
     public String setRegister() {
         return "INSERT INTO Student (SEMPID, STEMPID, SClassID)" +
                 "VALUE(?, ?, ?)";
+    }
+
+    public String isRecordPresent() {
+        return "SELECT * FROM Record " +
+                "WHERE SEMPID = ? AND Class_ID = ?";
     }
 }

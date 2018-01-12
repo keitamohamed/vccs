@@ -2,7 +2,7 @@ package com.keita.vccs.controller;
 
 import com.keita.vccs.connection.MySQLConnection;
 import com.keita.vccs.message.Message;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -117,7 +117,7 @@ public class Controller {
             return true;
         }
         String eMessage = "You must filed out all filed.";
-        message.alert("Filed Require", eMessage);
+        Message.errorRequire("Filed Require", eMessage);
         return false;
     }
 
