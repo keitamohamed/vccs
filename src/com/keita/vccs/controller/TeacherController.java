@@ -1,13 +1,13 @@
 package com.keita.vccs.controller;
 
 import com.keita.vccs.associate.Associate;
-import com.keita.vccs.associate.Export;
+import com.keita.vccs.util.Export;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.Grade;
 import com.keita.vccs.blueprint.Student;
 import com.keita.vccs.blueprint.Teacher;
 import com.keita.vccs.message.Message;
-import com.keita.vccs.sqlstatement.SQLStatement;
+import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -24,7 +24,7 @@ import java.util.List;
 public class TeacherController extends Controller{
     public static String userID, userType;
     private Associate associate = new Associate();
-    private Message msg = new Message();
+    private Message Message = new Message();
 
     @FXML private Label empL, scoreNL, nameL, scoreL, classIDL, titleGA, classAvg;
     @FXML private TextField empT, scoreNT, scoreT, nameT, classIDT, searchField;
@@ -69,10 +69,7 @@ public class TeacherController extends Controller{
             loadDate();
         });
 
-        exportExcel.setOnAction(e -> {
-            Export.exportListStudent(classes);
-
-        });
+        exportExcel.setOnAction(e -> Export.exportListStudent(classes));
 
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -203,12 +200,11 @@ public class TeacherController extends Controller{
             String sName = updateStudentScore(empT, classIDT, scoreNT, scoreT, updateReason);
 
             String message = sName + " " + scoreNT.getText().trim() + " has been updated successful";
-            msg.updateSuccessful("Successful Updated", message);
+            Message.updateSuccessful("Successful Updated", message);
 
         }
         if (updateReason.isVisible() && updateReason.getText().trim().isEmpty()) {
-            System.out.println("Print this " + updateReason.isVisible());
-            msg.alert("Need-Reason", "Sorry, you must " +
+            Message.errorRequire("Need-Reason", "Sorry, you must " +
                     "provide a reason for this update");
         }
 
@@ -222,16 +218,16 @@ public class TeacherController extends Controller{
                     addScore(empT, classIDT, scoreNT, scoreT);
                     String message = scoreName + " has been successfully added for student id# " +
                             "" + empT.getText().trim();
-                    msg.alert("Grade Added", message);
+                    Message.errorRequire("Grade Added", message);
                 } else {
                     String message = "Sorry could add score because " + scoreNT.getText().trim() + " " +
                             "already exist for student id/emp# " + empT.getText().trim();
-                    msg.alert("Not-Added", message);
+                    Message.errorRequire("Not-Added", message);
                 }
             } else {
                 String message = "Sorry could add score. You must enter a valid name, " +
                         "such as Home Work 1, Test 1, Mid term or Exam.";
-                msg.alert("Not-Added", message);
+                Message.errorRequire("Not-Added", message);
             }
         }
     }
