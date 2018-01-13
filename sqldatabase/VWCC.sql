@@ -113,7 +113,8 @@ INSERT INTO User (UserID, Name, Email, Phone, Username, UPassword, UserType)
   (76002, 'Ashely William', 'w78342@email.com', '897-201-3244', 'Awilliam', 'Washely^', 'Student'),
   (76098, 'Mohamed Keita', 'mk24238@email.com', '784-212-8000', 'mk24238', '12Keita', 'Student'),
   (72201, 'Melanie Crouch', 'crouch780@email.com', '540-111-8900', 'mcrouch89', '#crouchM', 'Teacher'),
-  (65003, 'P. Jodi Clingenpeel', 'jodi623@email.com', '562-907-4623', 'jc78342', '&8jodi', 'Teacher');
+  (65003, 'P. Jodi Clingenpeel', 'jodi623@email.com', '562-907-4623', 'jc78342', '&8jodi', 'Teacher'),
+  (542310, 'Lacey Peterson', 'lperson@email.com', '562-523-9034', 'lacey72', '^Lacey34', 'Admin');;
 
 INSERT INTO Class (ClassID, CTEMPID, Class_Name, Description)
     VALUE ('ITP 120', 67531, 'Java Programming I', 'NA'),
