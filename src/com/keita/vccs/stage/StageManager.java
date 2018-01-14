@@ -25,6 +25,7 @@ public class StageManager {
             tStage.setScene(tScene);
             tStage.setTitle(title);
             tStage.setResizable(false);
+            tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Admin.css").toExternalForm());
             tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Table.css").toExternalForm());
             tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Main.css").toExternalForm());
             tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Message.css").toExternalForm());

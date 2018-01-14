@@ -9,9 +9,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.Group?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.blueprint.Admin">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.AdminController">
    <children>
-      <Pane prefHeight="739.0" prefWidth="272.0" style="-fx-background-color: yellow;">
+      <Pane fx:id="aHomePane" layoutX="272.0" layoutY="6.0" prefHeight="739.0" prefWidth="927.0">
+         <children>
+            <TableView fx:id="aUserTable" layoutX="14.0" layoutY="132.0" prefHeight="588.0" prefWidth="643.0">
+              <columns>
+                <TableColumn prefWidth="118.0" text="EMP ID" />
+                <TableColumn prefWidth="138.0" text="NAME" />
+                  <TableColumn minWidth="0.0" prefWidth="171.0" text="EMAIL" />
+                  <TableColumn prefWidth="103.0" text="PHONE" />
+                  <TableColumn prefWidth="109.0" text="USER TYPE" />
+              </columns>
+            </TableView>
+            <TableView fx:id="aClassTable" layoutX="668.0" layoutY="132.0" prefHeight="280.0" prefWidth="256.0">
+              <columns>
+                <TableColumn prefWidth="85.0" text="CLASS ID" />
+                <TableColumn prefWidth="170.0" text="CLASS NAME" />
+              </columns>
+            </TableView>
+            <TableView fx:id="aTacherTable" layoutX="668.0" layoutY="432.0" prefHeight="288.0" prefWidth="256.0">
+               <columns>
+                  <TableColumn prefWidth="98.0" text="C1" />
+                  <TableColumn prefWidth="157.0" text="C2" />
+               </columns>
+            </TableView>
+            <TextField fx:id="aSearchField" layoutX="672.0" layoutY="30.0" prefHeight="50.0" prefWidth="218.0" promptText="I'm looking for...">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <ImageView fx:id="aSearchFieldIcon" fitHeight="40.0" fitWidth="61.0" layoutX="838.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icon/find.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="aHomeLeftPane" prefHeight="745.0" prefWidth="272.0">
          <children>
             <MenuBar prefHeight="39.0" prefWidth="271.0">
               <menus>
@@ -49,9 +84,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="262.0" text="DASHBOARD" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="ADD NEW USER" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="206.0" text="ADD NEW CLASS" GridPane.rowIndex="2" />
+                        <Button fx:id="aHome" alignment="CENTER" mnemonicParsing="false" onAction="#dashboard" prefHeight="35.0" prefWidth="262.0" text="DASHBOARD" />
+                        <Button fx:id="aNewUser" mnemonicParsing="false" onAction="#newUser" prefHeight="35.0" prefWidth="215.0" text="ADD NEW USER" GridPane.rowIndex="1" />
+                        <Button fx:id="aNewClass" mnemonicParsing="false" prefHeight="35.0" prefWidth="206.0" text="ADD NEW CLASS" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <ImageView fitHeight="27.0" fitWidth="35.0" layoutX="21.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
@@ -80,11 +115,12 @@
                   </Label>
                   <GridPane layoutX="60.0" layoutY="35.0" prefHeight="161.0" prefWidth="205.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="205.0" text="UPDATE USER INFO" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="DELETE USER" GridPane.rowIndex="1" />
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="DELETE CLASS" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="205.0" text="UPDATE USER INFO" GridPane.columnIndex="1" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="DELETE USER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="DELETE CLASS" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
+                        <ColumnConstraints />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
@@ -95,9 +131,8 @@
                   </GridPane>
                </children>
             </Pane>
+            <Pane fx:id="aNewUserPane" layoutX="-470.0" layoutY="405.0" prefHeight="745.0" prefWidth="927.0" style="-fx-background-color: green;" />
          </children>
       </Pane>
-      <Pane layoutX="272.0" layoutY="-1.0" prefHeight="739.0" prefWidth="927.0" style="-fx-background-color: red;" />
-      <Pane layoutX="273.0" prefHeight="739.0" prefWidth="927.0" style="-fx-background-color: green;" />
    </children>
 </AnchorPane>

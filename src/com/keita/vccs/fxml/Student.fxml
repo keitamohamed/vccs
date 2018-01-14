@@ -83,7 +83,7 @@
                   <TextField fx:id="search" layoutX="14.0" layoutY="17.0" prefHeight="35.0" prefWidth="231.0" promptText="Enter a search key word" />
                   <ImageView fx:id="searchIcon" fitHeight="37.0" fitWidth="67.0" layoutX="208.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/find.png" />
+                        <Image url="@../images/icon/find.png" />
                      </image>
                   </ImageView>
                </children>
