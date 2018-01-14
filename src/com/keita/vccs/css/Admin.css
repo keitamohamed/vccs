@@ -1,0 +1,18 @@
+
+#aHomeLeftPane {
+    -fx-background-image: url('../images/blue-sky.jpg');
+    -fx-background-repeat: no-repeat;
+}
+
+#aSearchField {
+    -fx-font-size: 16px;
+    -fx-font-family: "Times New Roman";
+    -fx-border-insets: 0;
+    -fx-background-color: none;
+    -fx-border-color: black;
+    -fx-border-radius: 25 25px 25 25px;
+}
+
+/*#aSearchField:hover {*/
+    /*-fx-pref-width: 200px;*/
+/*}*/
