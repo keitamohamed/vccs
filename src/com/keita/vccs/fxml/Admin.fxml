@@ -12,6 +12,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.AdminController">
    <children>
+      <Pane fx:id="aNewUserPane" layoutX="272.0" prefHeight="745.0" prefWidth="927.0" />
       <Pane fx:id="aHomePane" layoutX="272.0" prefHeight="745.0" prefWidth="927.0">
          <children>
             <TableView fx:id="aUserTable" layoutX="14.0" layoutY="132.0" prefHeight="588.0" prefWidth="643.0">
@@ -45,7 +46,6 @@
                   <Image url="@../images/icon/find.png" />
                </image>
             </ImageView>
-            <Pane fx:id="aNewUserPane" prefHeight="745.0" prefWidth="927.0" style="-fx-background-color: green;" />
          </children>
       </Pane>
       <Pane fx:id="aHomeLeftPane" prefHeight="745.0" prefWidth="272.0">
