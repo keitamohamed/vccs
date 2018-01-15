@@ -1,3 +1,30 @@
+#aUpdatePane {
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-width: 2 0 0 0;
+    -fx-border-color: #000;
+}
+
+#aNewUserPane {
+    -fx-border-color: yellow;
+}
+
+#leftSubTitle {
+    -fx-text-fill: #fff;
+}
+
+#aHome, #aNewUser, #aNewClass, #aUpdate, #aDeleteClass, #aDeleteUser {
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-weight: bold;
+    -fx-border-insets: 0;
+    -fx-background-color: none;
+}
+
+#aHome:hover, #aNewUser:hover, #aNewClass:hover,
+#aUpdate:hover, #aDeleteClass:hover, #aDeleteUser:hover {
+    -fx-background-color: #9F0B32;
+}
 
 #aHomeLeftPane {
     -fx-background-image: url('../images/blue-sky.jpg');
@@ -6,6 +33,8 @@
 
 #aSearchField {
     -fx-font-size: 16px;
+    -fx-text-fill: green;
+    -fx-prompt-text-fill: #000;
     -fx-font-family: "Times New Roman";
     -fx-border-insets: 0;
     -fx-background-color: none;
