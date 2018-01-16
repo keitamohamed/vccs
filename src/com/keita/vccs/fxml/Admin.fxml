@@ -17,11 +17,11 @@
          <children>
             <TableView fx:id="aUserTable" layoutX="14.0" layoutY="132.0" prefHeight="588.0" prefWidth="643.0">
               <columns>
-                <TableColumn prefWidth="118.0" text="EMP ID" />
-                <TableColumn prefWidth="138.0" text="NAME" />
-                  <TableColumn minWidth="0.0" prefWidth="171.0" text="EMAIL" />
-                  <TableColumn prefWidth="103.0" text="PHONE" />
-                  <TableColumn prefWidth="109.0" text="USER TYPE" />
+                <TableColumn fx:id="userID" prefWidth="118.0" text="EMP ID" />
+                <TableColumn fx:id="name" prefWidth="138.0" text="NAME" />
+                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="171.0" text="EMAIL" />
+                  <TableColumn fx:id="phone" prefWidth="103.0" text="PHONE" />
+                  <TableColumn fx:id="type" prefWidth="109.0" text="USER TYPE" />
               </columns>
             </TableView>
             <TableView fx:id="aClassTable" layoutX="668.0" layoutY="132.0" prefHeight="280.0" prefWidth="256.0">
