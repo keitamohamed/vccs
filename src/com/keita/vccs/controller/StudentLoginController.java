@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
-public class StudentController extends Controller{
+public class StudentLoginController extends LoginController {
     public static String userID, userType;
 
     @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, grade, titleGA;
@@ -66,7 +66,7 @@ public class StudentController extends Controller{
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (!aNameT.isVisible() && newValue != null) {
-                empT.setText(StudentController.userID);
+                empT.setText(StudentLoginController.userID);
                 classIDT.setText(newValue.getClassID());
                 techIDT.setText(newValue.getEmp());
             }

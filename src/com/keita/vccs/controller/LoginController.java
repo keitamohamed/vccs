@@ -23,7 +23,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Controller {
+public class LoginController {
     private Message message = new Message();
     private SQLStatement statement = new SQLStatement();
 

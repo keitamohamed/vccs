@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherController extends Controller{
+public class TeacherLoginController extends LoginController {
     public static String userID, userType;
     private Message Message = new Message();
 

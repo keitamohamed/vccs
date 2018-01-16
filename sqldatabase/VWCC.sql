@@ -109,7 +109,7 @@ INSERT INTO User (UserID, Name, Email, Phone, Username, UPassword, UserType)
   (96431, 'P. Jeff', 'djeff@email.com', '540-452-1110', 'dJeff', 'Jeffd134', 'Teacher'),
   (65011, 'Dr. Smith', 'dsmaith23@email.com', '980-876-0012', 'dSmith', 'Smith!7', 'Teacher'),
   (80234, 'P. Fosdal', 'fosdal54@email.com', '704-103-7734', 'fosdal23', 'Peter34!', 'Teacher'),
-  (67344, 'Tarnue Jallah', 'tarnue34@email.com', '673-23-8934', 'jallah', 'Tarnuej', 'Student'),
+  (67344, 'Tarnue Jallah', 'tarnue34@email.com', '704-23-8934', 'jallah', 'Tarnuej', 'Student'),
   (76002, 'Ashely William', 'w78342@email.com', '897-201-3244', 'Awilliam', 'Washely^', 'Student'),
   (76098, 'Mohamed Keita', 'mk24238@email.com', '784-212-8000', 'mk24238', '12Keita', 'Student'),
   (72201, 'Melanie Crouch', 'crouch780@email.com', '540-111-8900', 'mcrouch89', '#crouchM', 'Teacher'),

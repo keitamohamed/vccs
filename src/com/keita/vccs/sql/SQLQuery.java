@@ -16,6 +16,10 @@ public class SQLQuery {
                 "WHERE s.STEMPID = ?";
     }
 
+    public String getUsers() {
+        return "SELECT * FROM User";
+    }
+
     public String getUser() {
         return "SELECT * FROM User u " +
                 "WHERE u.UserID = ?";
@@ -43,6 +47,10 @@ public class SQLQuery {
     public String getTeacher() {
         return "SELECT * FROM User " +
                 "WHERE UserID = ?";
+    }
+
+    public String getClasses() {
+        return "SELECT * FROM Class";
     }
 
     public String getTClass() {

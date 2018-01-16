@@ -3,7 +3,7 @@ package com.keita.vccs.util;
 import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
-import com.keita.vccs.controller.StudentController;
+import com.keita.vccs.controller.StudentLoginController;
 import com.keita.vccs.message.Message;
 import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.calculate.Calculation;
@@ -30,7 +30,7 @@ public class Utility extends Calculation{
     }
 
     public static void loadStudentInfo() {
-        SQLStatement.getStudentInfo(student, StudentController.userID);
+        SQLStatement.getStudentInfo(student, StudentLoginController.userID);
     }
 
     public static void studentInfo(Label emp, Label name, Label email, Label num) {

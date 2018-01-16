@@ -60,6 +60,38 @@ public class SQLStatement {
         return id;
     }
 
+    public static ObservableList<User> loadDate(ObservableList<User> users, ObservableList<Class> classes) {
+        connection = null;
+        pStatement = null;
+
+        try {
+            connection = connect.mysql();
+            pStatement = connection.prepareStatement(query.getUsers());
+            ResultSet rs = pStatement.executeQuery();
+
+            if (users.size() > 0) {
+                users.clear();
+                classes.clear();
+            }
+
+            while (rs.next()) {
+                users.add(new User(rs.getString("UserID"), rs.getString("Name"), rs.getString("Email"),
+                        rs.getString("Phone"), rs.getString("UserType")));
+            }
+
+            pStatement = connection.prepareStatement(query.getClasses());
+            rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                classes.add(new Class(rs.getString("ClassID"), rs.getString("Class_Name"), rs.getString("Description")));
+            }
+
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     public ObservableList<OtherClasses> loadDate(ObservableList<Teacher> teachers, ObservableList<Class>
             classes, ObservableList<Student> students, String teacherID, String type) {
         ObservableList<OtherClasses> otherClasses = FXCollections.observableArrayList();

@@ -23,7 +23,7 @@ public class CurseHistoryController {
     @FXML
     public void initialize() {
         Utility.loadStudentInfo();
-        SQLStatement.loadRecord(records, StudentController.userID);
+        SQLStatement.loadRecord(records, StudentLoginController.userID);
         loadRecord();
     }
 
