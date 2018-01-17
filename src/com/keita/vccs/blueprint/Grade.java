@@ -6,17 +6,19 @@ import javafx.beans.property.SimpleStringProperty;
 public class Grade {
     private SimpleStringProperty scoreName;
     private SimpleIntegerProperty score;
-    private SimpleStringProperty sempID;
+    private SimpleStringProperty classID;
+
+    public Grade () {}
 
     public Grade(String emp, String scoreName, int score) {
         this.scoreName = new SimpleStringProperty(scoreName);
         this.score = new SimpleIntegerProperty(score);
-        this.sempID = new SimpleStringProperty(emp);
+        this.classID = new SimpleStringProperty(emp);
     }
 
     @Override
     public String toString() {
-        return "Student emp: " + sempID + ", name of score: " + scoreName +
+        return "Student emp: " + classID + ", name of score: " + scoreName +
                 ", score: " + score;
     }
 
@@ -32,16 +34,20 @@ public class Grade {
         return score.get();
     }
 
+    public String getClassID() {
+        return classID.get();
+    }
+
+
+    public void setClassID(String classID) {
+        this.classID.set(classID);
+    }
+
     public void setScore(int score) {
         this.score.set(score);
     }
 
-    public String getSempID() {
-        return sempID.get();
-    }
-
-
-    public void setSempID(String sempID) {
-        this.sempID.set(sempID);
+    public SimpleIntegerProperty scoreProperty() {
+        return score;
     }
 }

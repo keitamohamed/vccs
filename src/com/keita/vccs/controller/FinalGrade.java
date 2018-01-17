@@ -37,7 +37,7 @@ public class FinalGrade {
     public void initialize() {
 
         if (teachers.size() == 0) {
-            Utility.loadAllData(teachers, classes, students, TeacherLoginController.userID, TeacherLoginController.userType);
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
             classTypeAddData();
             sortByClass(fClassType.getSelectionModel().getSelectedItem());
         }

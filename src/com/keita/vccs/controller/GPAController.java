@@ -21,7 +21,7 @@ public class GPAController {
     @FXML
     public void initialize() {
         Utility.loadStudentInfo();
-        SQLStatement.loadRecord(records, StudentLoginController.userID);
+        SQLStatement.loadRecord(records, StudentController.userID);
 
         loadRecord();
     }

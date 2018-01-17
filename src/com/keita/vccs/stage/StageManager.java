@@ -1,8 +1,8 @@
 package com.keita.vccs.stage;
 
 import com.keita.vccs.controller.AdminController;
-import com.keita.vccs.controller.StudentLoginController;
-import com.keita.vccs.controller.TeacherLoginController;
+import com.keita.vccs.controller.StudentController;
+import com.keita.vccs.controller.TeacherController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,12 +82,12 @@ public class StageManager {
 
     private static void sendID(String userID, String userType) {
         if (userType.equals("Teacher")) {
-            TeacherLoginController.userID(userID, userType);
+            TeacherController.userID(userID, userType);
         }
         else if (userID.equals("Admin")) {
             AdminController.userID(userID, userType);
         }else {
-            StudentLoginController.userID(userID, userType);
+            StudentController.userID(userID, userType);
         }
     }
 }

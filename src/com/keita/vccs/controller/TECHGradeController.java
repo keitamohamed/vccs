@@ -36,14 +36,14 @@ public class TECHGradeController {
     public void initialize() {
         if (scoreTables.size() > 0) {
             scoreTables.clear();
-            Utility.loadAllData(teachers, classes, students, TeacherLoginController.userID, TeacherLoginController.userType);
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
             scoreTableData();
             scoreItem.getChildren().clear();
             scoreItem = new TreeItem<>(new ScoreTable("EMP ID", "CLASS ID", "NAME",
                     "SCORE NAME", "SCORE"));
         }
         else {
-            Utility.loadAllData(teachers, classes, students, TeacherLoginController.userID, TeacherLoginController.userType);
+            Utility.loadAllData(teachers, classes, students, TeacherController.userID, TeacherController.userType);
             scoreTableData();
         }
         gExcel.setOnAction(e -> Export.exportStudentGrade(scoreTables));

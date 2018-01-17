@@ -17,16 +17,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
-public class StudentLoginController extends LoginController {
+public class StudentController extends LoginController {
     public static String userID, userType;
 
     @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, grade, titleGA;
-    @FXML private TextField empT, techIDT, classIDT, aNameT;
+    @FXML private TextField empT, techIDT, classIDT, aNameT, search;
     @FXML private TextArea assignment;
     @FXML private Button addClass, assignmentB, choseFile, submitB;
     @FXML private GridPane registerPane;
-    @FXML private TreeTableView<StudentT> table;
-    @FXML private TreeTableColumn<StudentT, String> tClassID, tCName, tScore;
+    @FXML private TreeTableView<Grade> table;
+    @FXML private TreeTableColumn<Grade, String> tClassID, tCName;
+    @FXML private TreeTableColumn<Grade, Number> tScore;
     @FXML private ChoiceBox<String> sortBy;
     @FXML private TableView<OtherClasses> tableView;
     @FXML private TableColumn<OtherClasses, String> classID, className;
@@ -39,15 +40,16 @@ public class StudentLoginController extends LoginController {
 
 
     private ObservableList<String> studentClasses = FXCollections.observableArrayList();
-    private TreeItem<StudentT> studentTreeItem = new TreeItem<>(new StudentT("Class ID", "Score Name", "Score"));
+    private TreeItem<Grade> score = new TreeItem<>(new Grade("Class ID", "Score Name", 0));
+
 
     @FXML
     public void initialize() {
 
         disableAddAssignment();
         sortBy.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            studentTreeItem.getChildren().clear();
-            studentTreeItem = new TreeItem<>(new StudentT("Class ID", "Score Name", "Score"));
+            score.getChildren().clear();
+            score = new TreeItem<>(new Grade("Class ID", "Score Name", 0));
             sortBy(newValue);
             Utility.calculateGrade(classes, sortBy.getSelectionModel().getSelectedItem(), grade) ;
         });
@@ -66,7 +68,7 @@ public class StudentLoginController extends LoginController {
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (!aNameT.isVisible() && newValue != null) {
-                empT.setText(StudentLoginController.userID);
+                empT.setText(StudentController.userID);
                 classIDT.setText(newValue.getClassID());
                 techIDT.setText(newValue.getEmp());
             }
@@ -105,7 +107,7 @@ public class StudentLoginController extends LoginController {
 
         otherClass = Utility.loadAllData(teachers, classes, students, userID, userType);
 
-        TreeItem<StudentT> stud;
+        TreeItem<Grade> stud;
 
         if (studentClasses.size() > 0) {
             studentClasses.clear();
@@ -117,22 +119,20 @@ public class StudentLoginController extends LoginController {
                 studentClasses.add(cal.getClassName());
                 for (Student student : cal.getStudent()) {
                     for (Grade grade : student.getGrades()) {
-                        stud = new TreeItem<>(new StudentT(cal.getClassID(), grade.getScoreName(), Integer.toString(grade.getScore())));
-                        studentTreeItem.getChildren().add(stud);
+                        stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
+                        score.getChildren().add(stud);
                     }
                 }
             }
         }
 
-        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
+        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
                 new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
+        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
                 new ReadOnlyStringWrapper(param.getValue().getValue().getScoreName()));
-        tScore.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScore()));
+        tScore.setCellValueFactory(param -> param.getValue().getValue().scoreProperty());
 
-        table.setRoot(studentTreeItem);
-        table.setShowRoot(false);
+        table.setRoot(score);
     }
 
     private void tableView() {
@@ -154,38 +154,36 @@ public class StudentLoginController extends LoginController {
 
     private void sortBy(String sortBy) {
 
-        TreeItem<StudentT> stud;
+        TreeItem<Grade> stud;
 
         for (Class cal : classes) {
             for (Student student : cal.getStudent()) {
                 for (Grade grade : student.getGrades()) {
                     if (sortBy != null) {
                         if (sortBy.equals("Show All Grade")) {
-                            stud = new TreeItem<>(new StudentT(cal.getClassID(), grade.getScoreName(), Integer.toString(grade.getScore())));
-                            studentTreeItem.getChildren().add(stud);
+                            stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
+                            score.getChildren().add(stud);
                         }
 
                         if (sortBy.equals(cal.getClassName())) {
-                            stud = new TreeItem<>(new StudentT(cal.getClassID(), grade.getScoreName(), Integer.toString(grade.getScore())));
-                            studentTreeItem.getChildren().add(stud);
+                            stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
+                            score.getChildren().add(stud);
                         }
                     }
                 }
             }
         }
 
-        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
+        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
                 new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
+        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
                 new ReadOnlyStringWrapper(param.getValue().getValue().getScoreName()));
-        tScore.setCellValueFactory((TreeTableColumn.CellDataFeatures<StudentT, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScore()));
+        tScore.setCellValueFactory(param -> param.getValue().getValue().scoreProperty());
 
-        table.setRoot(studentTreeItem);
-        table.setShowRoot(false);
+        table.setRoot(score);
     }
 
-    public void register(String emp, String techEMP, String classID, TextField aNameT) {
+    private void register(String emp, String techEMP, String classID, TextField aNameT) {
         if (!aNameT.isVisible()) {
             SQLStatement.registerForClass(emp, techEMP, classID);
         }else {
