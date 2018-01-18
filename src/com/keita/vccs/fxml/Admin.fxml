@@ -49,8 +49,8 @@
       </Pane>
       <Pane fx:id="aNewUserPane" layoutX="272.0" prefHeight="745.0" prefWidth="927.0" style="-fx-background-color: yellow;">
          <children>
-            <Label layoutX="289.0" layoutY="44.0" text="NEW USER REGISTRATION " />
-            <Label layoutX="73.0" layoutY="126.0" text="User information" />
+            <Label fx:id="aTitle" layoutX="289.0" layoutY="44.0" text="NEW USER REGISTRATION " />
+            <Label fx:id="aSubTitle" layoutX="70.0" layoutY="127.0" text="User information" />
             <GridPane hgap="30.0" layoutX="73.0" layoutY="181.0" prefHeight="115.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -62,11 +62,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Enter first name" />
-                  <TextField promptText="Enter email address" GridPane.rowIndex="1" />
-                  <TextField promptText="Enter last name" GridPane.columnIndex="1" />
-                  <TextField promptText="Enter phone num" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <DatePicker prefHeight="27.0" prefWidth="236.0" promptText="Chose data of birth" GridPane.rowIndex="2" />
+                  <TextField fx:id="aFirstName" promptText="Enter first name" />
+                  <TextField fx:id="aEmail" promptText="Enter email address" GridPane.rowIndex="1" />
+                  <TextField fx:id="aLastName" promptText="Enter last name" GridPane.columnIndex="1" />
+                  <TextField fx:id="aPhoneNum" promptText="Enter phone num" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="aDatePicker" prefHeight="27.0" prefWidth="236.0" promptText="Chose data of birth" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane layoutX="73.0" layoutY="305.0" prefHeight="27.0" prefWidth="604.0">
@@ -77,7 +77,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Enter street address" />
+                  <TextField fx:id="aAddress" promptText="Enter street address" />
                </children>
             </GridPane>
             <GridPane hgap="30.0" layoutX="73.0" layoutY="340.0" prefHeight="80.0" prefWidth="604.0">
@@ -90,13 +90,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Enter city and state (Ex: Roanoke, VA)" />
-                  <TextField promptText="Enter state" GridPane.columnIndex="1" />
-                  <TextField promptText="Enter zip code" GridPane.rowIndex="1" />
-                  <ChoiceBox prefHeight="27.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="aCity" promptText="Enter city and state (Ex: Roanoke, VA)" />
+                  <TextField fx:id="aState" promptText="Enter state" GridPane.columnIndex="1" />
+                  <TextField fx:id="aZipcode" promptText="Enter zip code" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="aDropBox" prefHeight="27.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Label layoutX="70.0" layoutY="455.0" text="Loing information" />
+            <Label fx:id="aSubTitle" layoutX="70.0" layoutY="455.0" text="Loing information" />
             <GridPane hgap="50.0" layoutX="72.0" layoutY="504.0" prefHeight="80.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -107,9 +107,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Enter username" />
-                  <PasswordField promptText="Enter password" GridPane.rowIndex="1" />
-                  <PasswordField promptText="Conform password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="aUsername" promptText="Enter username" />
+                  <PasswordField fx:id="aPassword" promptText="Enter password" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="aConformPass" promptText="Conform password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Separator layoutX="70.0" layoutY="151.0" prefWidth="608.0" />
@@ -123,8 +123,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="189.0" text="Clear" />
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Submit" GridPane.columnIndex="1" />
+                  <Button fx:id="aClear" mnemonicParsing="false" prefHeight="27.0" prefWidth="189.0" text="Clear" />
+                  <Button fx:id="aSubmit" mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Submit" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children></Pane>

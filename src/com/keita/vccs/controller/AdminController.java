@@ -8,23 +8,27 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
 public class AdminController {
 
     private static String empID, userType;
-    private boolean userTable, classTable;
 
-    @FXML private Button aHome, aNewUser;
+    @FXML private Button aClear, aSubmit;
+
     @FXML private Pane aHomePane, aNewUserPane;
     @FXML private TableView<User> aUserTable;
     @FXML private TableView<Class> aClassTable;
     @FXML private TextField aSearchField;
+
+    // New user registration variables
+    @FXML private TextField aFirstName, aLastName, aEmail, aPhoneNum, aAddress;
+    @FXML private TextField aCity, aState, aZipcode, aUsername;
+    @FXML private PasswordField aPassword, aConformPass;
+    @FXML private DatePicker aDatePicker;
+    @FXML private ChoiceBox aDropBox;
 
     @FXML private TableColumn<User, String> userID, name, email, phone, type;
     @FXML private TableColumn<Class, String> classID, className;
@@ -76,26 +80,21 @@ public class AdminController {
     private void search () {
         FilteredList<User> filteredUserData = new FilteredList<>(users, p -> true);
 
-        aSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredUserData.setPredicate(user -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+        aSearchField.textProperty().addListener((observable, oldValue, newValue) -> filteredUserData.setPredicate(user -> {
+            // If filter text is empty, display all persons.
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
 
-                // Compare first name and last name of every user with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
+            // Compare first name and last name of every user with filter text.
+            String lowerCaseFilter = newValue.toLowerCase();
 
-                if (user.getUserID().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getName().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getEmail().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getPhone().toLowerCase().contains(lowerCaseFilter) ||
-                        user.getUserType().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
-                }
-                return false; // Does not match.
-            });
-        });
+            return user.getUserID().toLowerCase().contains(lowerCaseFilter) ||
+                    user.getName().toLowerCase().contains(lowerCaseFilter) ||
+                    user.getEmail().toLowerCase().contains(lowerCaseFilter) ||
+                    user.getPhone().toLowerCase().contains(lowerCaseFilter) ||
+                    user.getUserType().toLowerCase().contains(lowerCaseFilter);
+        }));
 
         // 3. Wrap the FilteredList in a SortedList.
         SortedList<User> sortedData = new SortedList<>(filteredUserData);

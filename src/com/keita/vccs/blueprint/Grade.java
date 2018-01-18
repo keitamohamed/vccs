@@ -4,9 +4,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Grade {
+
+    private SimpleStringProperty classID;
     private SimpleStringProperty scoreName;
     private SimpleIntegerProperty score;
-    private SimpleStringProperty classID;
 
     public Grade () {}
 

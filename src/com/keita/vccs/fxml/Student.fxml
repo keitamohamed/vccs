@@ -136,15 +136,15 @@
                </font>
             </Label>
          </children></Pane>
-      <HBox layoutX="363.0" layoutY="159.0" prefHeight="528.0" prefWidth="457.0" style="-fx-background-color: green;">
+      <HBox layoutX="363.0" layoutY="159.0" prefHeight="528.0" prefWidth="457.0">
          <children>
-            <TreeTableView fx:id="table" prefHeight="528.0" prefWidth="466.0">
+            <TableView fx:id="table" prefHeight="528.0" prefWidth="468.0">
               <columns>
-                <TreeTableColumn fx:id="tClassID" prefWidth="100.0" text="CLASS ID" />
-                <TreeTableColumn fx:id="tCName" prefWidth="237.0" text="SCORE NAME" />
-                  <TreeTableColumn fx:id="tScore" prefWidth="119.0" text="SCORE" />
+                <TableColumn fx:id="tClassID" prefWidth="121.0" text="CLASS ID" />
+                <TableColumn fx:id="tCName" prefWidth="211.0" text="SCORE NAME" />
+                  <TableColumn fx:id="tScore" minWidth="0.0" prefWidth="123.0" text="SCORE" />
               </columns>
-            </TreeTableView>
+            </TableView>
          </children>
       </HBox>
       <TableView fx:id="tableView" layoutX="829.0" layoutY="201.0" prefHeight="258.0" prefWidth="358.0">

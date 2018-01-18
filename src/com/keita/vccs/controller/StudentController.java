@@ -9,13 +9,17 @@ import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.util.Validation;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 
 public class StudentController extends LoginController {
     public static String userID, userType;
@@ -25,11 +29,11 @@ public class StudentController extends LoginController {
     @FXML private TextArea assignment;
     @FXML private Button addClass, assignmentB, choseFile, submitB;
     @FXML private GridPane registerPane;
-    @FXML private TreeTableView<Grade> table;
-    @FXML private TreeTableColumn<Grade, String> tClassID, tCName;
-    @FXML private TreeTableColumn<Grade, Number> tScore;
-    @FXML private ChoiceBox<String> sortBy;
+    @FXML private TableView<Grade> table;
+    @FXML private TableColumn<Grade, String> tClassID, tCName;
+    @FXML private TableColumn<Grade, Number> tScore;
     @FXML private TableView<OtherClasses> tableView;
+    @FXML ChoiceBox<String> sortBy;
     @FXML private TableColumn<OtherClasses, String> classID, className;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
@@ -37,22 +41,14 @@ public class StudentController extends LoginController {
     private ObservableList<Student> students = FXCollections.observableArrayList();
 
     private ObservableList<OtherClasses> otherClass = FXCollections.observableArrayList();
-
+    private ObservableList<Grade> scores = FXCollections.observableArrayList();
 
     private ObservableList<String> studentClasses = FXCollections.observableArrayList();
-    private TreeItem<Grade> score = new TreeItem<>(new Grade("Class ID", "Score Name", 0));
-
 
     @FXML
     public void initialize() {
 
         disableAddAssignment();
-        sortBy.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            score.getChildren().clear();
-            score = new TreeItem<>(new Grade("Class ID", "Score Name", 0));
-            sortBy(newValue);
-            Utility.calculateGrade(classes, sortBy.getSelectionModel().getSelectedItem(), grade) ;
-        });
 
         addClass.setOnAction(e -> {
             disableAddAssignment();
@@ -76,7 +72,7 @@ public class StudentController extends LoginController {
 
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (aNameT.isVisible() && newValue != null) {
-                classIDT.setText(newValue.getValue().getClassID());
+                classIDT.setText(newValue.getClassID());
             }
         });
 
@@ -93,46 +89,49 @@ public class StudentController extends LoginController {
                         "list because you are\nalready resisted in this class."));
             }
         });
+
+        sortBy();
     }
 
     @FXML
     private void loadData() {
         load();
+        tableView();
         sortBy.setItems(studentClasses);
         sortBy.getSelectionModel().selectFirst();
-        tableView();
     }
 
     private void load() {
 
         otherClass = Utility.loadAllData(teachers, classes, students, userID, userType);
 
-        TreeItem<Grade> stud;
+        if (table.getColumns().size() > 0 || table.getItems().size() > 0) {
+            table.getItems().clear();
+            table.getColumns().clear();
+        }
+
+        tClassID.setCellValueFactory(new PropertyValueFactory<>("classID"));
+        tCName.setCellValueFactory(new PropertyValueFactory<>("scoreName"));
+        tScore.setCellValueFactory(new PropertyValueFactory<>("score"));
 
         if (studentClasses.size() > 0) {
             studentClasses.clear();
         }
-        studentClasses.add("Show All Grade");
+        studentClasses.add("Show all student");
 
         for (Teacher teacher : teachers) {
             for (Class cal : teacher.getClasses()) {
                 studentClasses.add(cal.getClassName());
                 for (Student student : cal.getStudent()) {
                     for (Grade grade : student.getGrades()) {
-                        stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
-                        score.getChildren().add(stud);
+                        scores.add(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
                     }
                 }
             }
         }
 
-        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScoreName()));
-        tScore.setCellValueFactory(param -> param.getValue().getValue().scoreProperty());
-
-        table.setRoot(score);
+        table.setItems(scores);
+        table.getColumns().addAll(tClassID, tCName, tScore);
     }
 
     private void tableView() {
@@ -152,35 +151,31 @@ public class StudentController extends LoginController {
         tableView.getColumns().add(className);
     }
 
-    private void sortBy(String sortBy) {
+    private void sortBy() {
 
-        TreeItem<Grade> stud;
+        FilteredList<Grade> filteredScoreData = new FilteredList<>(scores, p -> true);
 
-        for (Class cal : classes) {
-            for (Student student : cal.getStudent()) {
-                for (Grade grade : student.getGrades()) {
-                    if (sortBy != null) {
-                        if (sortBy.equals("Show All Grade")) {
-                            stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
-                            score.getChildren().add(stud);
-                        }
-
-                        if (sortBy.equals(cal.getClassName())) {
-                            stud = new TreeItem<>(new Grade(cal.getClassID(), grade.getScoreName(), grade.getScore()));
-                            score.getChildren().add(stud);
-                        }
-                    }
-                }
+        search.textProperty().addListener((observable, oldValue, newValue) -> filteredScoreData.setPredicate(score -> {
+            // If filter text is empty, display all persons.
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
             }
-        }
 
-        tClassID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getClassID()));
-        tCName.setCellValueFactory((TreeTableColumn.CellDataFeatures<Grade, String> param) ->
-                new ReadOnlyStringWrapper(param.getValue().getValue().getScoreName()));
-        tScore.setCellValueFactory(param -> param.getValue().getValue().scoreProperty());
+            // Compare first name and last name of every user with filter text.
+            String lowerCaseFilter = newValue.toLowerCase();
 
-        table.setRoot(score);
+            return score.getClassID().toLowerCase().contains(lowerCaseFilter) ||
+                    score.getScoreName().toLowerCase().contains(lowerCaseFilter);
+        }));
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Grade> sortedData = new SortedList<>(filteredScoreData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        table.setItems(sortedData);
     }
 
     private void register(String emp, String techEMP, String classID, TextField aNameT) {
