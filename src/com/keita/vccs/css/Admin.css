@@ -4,6 +4,22 @@
     -fx-font-style: italic;
 }
 
+#aHomeLeftPane, #aHomeTopPane {
+    -fx-background-image: url('../images/blue-sky.jpg');
+    -fx-background-repeat: no-repeat;
+}
+
+#aSearchField {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+    -fx-prompt-text-fill: #fff;
+    -fx-font-family: "Times New Roman";
+    -fx-border-insets: 0;
+    -fx-background-color: none;
+    -fx-border-color: #fff;
+    -fx-border-radius: 25 25px 25 25px;
+}
+
 #aNewUserPane .button {
     -fx-text-fill: #fff;
     -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
@@ -12,18 +28,18 @@
     -fx-background-color: #9F0B32;
 }
 
+#aMainPane {
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-width: 1 0 1 0;
+    -fx-border-color: #fff;
+}
+
 .separator {
     -fx-background-color: #000;
     -fx-border-width: 1 0 0 0;
     -fx-border-insets: 1 0 0 0;
     -fx-background-radius: none;
     -fx-border-color: none;
-}
-
-#aUpdatePane {
-    -fx-border-insets: 0 0 0 0;
-    -fx-border-width: 2 0 0 0;
-    -fx-border-color: #000;
 }
 
 #aNewUserPane {
@@ -46,22 +62,6 @@
 #aHome:hover, #aNewUser:hover, #aNewClass:hover,
 #aUpdate:hover, #aDeleteClass:hover, #aDeleteUser:hover {
     -fx-background-color: #9F0B32;
-}
-
-#aHomeLeftPane {
-    -fx-background-image: url('../images/blue-sky.jpg');
-    -fx-background-repeat: no-repeat;
-}
-
-#aSearchField {
-    -fx-font-size: 16px;
-    -fx-text-fill: green;
-    -fx-prompt-text-fill: #000;
-    -fx-font-family: "Times New Roman";
-    -fx-border-insets: 0;
-    -fx-background-color: none;
-    -fx-border-color: black;
-    -fx-border-radius: 25 25px 25 25px;
 }
 
 /*#aSearchField:hover {*/

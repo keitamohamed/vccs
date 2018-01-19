@@ -3,16 +3,18 @@ package com.keita.vccs.controller;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.User;
 import com.keita.vccs.sql.SQLStatement;
+import com.keita.vccs.stage.StageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
-public class AdminController {
+public class AdminController extends LoginController{
 
     private static String empID, userType;
 
@@ -120,6 +122,11 @@ public class AdminController {
     private void newUser() {
         aNewUserPane.setVisible(true);
         aHomePane.setVisible(false);
+    }
+
+    @Override
+    public void singOut(Event event) {
+        StageManager.singOut(event);
     }
 
     public static void userID(String id, String type) {

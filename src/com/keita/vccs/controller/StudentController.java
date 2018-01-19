@@ -267,7 +267,6 @@ public class StudentController extends LoginController {
         }
     }
 
-    @FXML
     @Override
     public void singOut(Event event) {
         StageManager.singOut(event);

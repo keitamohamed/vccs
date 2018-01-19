@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.effect.*?>
@@ -12,46 +13,11 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.AdminController">
    <children>
-      <Pane fx:id="aHomePane" layoutX="272.0" prefHeight="745.0" prefWidth="927.0">
-         <children>
-            <TableView fx:id="aUserTable" layoutX="14.0" layoutY="104.0" prefHeight="616.0" prefWidth="643.0">
-              <columns>
-                <TableColumn fx:id="userID" prefWidth="99.0" resizable="false" text="EMP ID" />
-                <TableColumn fx:id="name" prefWidth="157.0" resizable="false" text="NAME" />
-                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="191.0" resizable="false" text="EMAIL" />
-                  <TableColumn fx:id="phone" prefWidth="115.0" resizable="false" text="PHONE" />
-                  <TableColumn fx:id="type" prefWidth="77.0" resizable="false" text="USER TYPE" />
-              </columns>
-            </TableView>
-            <TableView fx:id="aClassTable" layoutX="668.0" layoutY="103.0" prefHeight="309.0" prefWidth="256.0">
-              <columns>
-                <TableColumn fx:id="classID" prefWidth="85.0" text="CLASS ID" />
-                <TableColumn fx:id="className" prefWidth="170.0" text="CLASS NAME" />
-              </columns>
-            </TableView>
-            <TableView fx:id="aTacherTable" layoutX="668.0" layoutY="432.0" prefHeight="288.0" prefWidth="256.0">
-               <columns>
-                  <TableColumn prefWidth="98.0" text="C1" />
-                  <TableColumn prefWidth="157.0" text="C2" />
-               </columns>
-            </TableView>
-            <TextField fx:id="aSearchField" layoutX="657.0" layoutY="31.0" prefHeight="40.0" prefWidth="256.0" promptText="I'm looking for...">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </TextField>
-            <ImageView fx:id="aSearchFieldIcon" fitHeight="30.0" fitWidth="61.0" layoutX="870.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icon/find.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="aNewUserPane" layoutX="272.0" prefHeight="745.0" prefWidth="927.0" style="-fx-background-color: yellow;">
+      <Pane fx:id="aNewUserPane" layoutX="272.0" layoutY="96.0" prefHeight="649.0" prefWidth="927.0">
          <children>
             <Label fx:id="aTitle" layoutX="289.0" layoutY="44.0" text="NEW USER REGISTRATION " />
-            <Label fx:id="aSubTitle" layoutX="70.0" layoutY="127.0" text="User information" />
-            <GridPane hgap="30.0" layoutX="73.0" layoutY="181.0" prefHeight="115.0" prefWidth="604.0">
+            <Label fx:id="aSubTitle" layoutX="71.0" layoutY="87.0" text="User information" />
+            <GridPane hgap="30.0" layoutX="72.0" layoutY="128.0" prefHeight="115.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -69,7 +35,7 @@
                   <DatePicker fx:id="aDatePicker" prefHeight="27.0" prefWidth="236.0" promptText="Chose data of birth" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <GridPane layoutX="73.0" layoutY="305.0" prefHeight="27.0" prefWidth="604.0">
+            <GridPane layoutX="73.0" layoutY="255.0" prefHeight="27.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -80,7 +46,7 @@
                   <TextField fx:id="aAddress" promptText="Enter street address" />
                </children>
             </GridPane>
-            <GridPane hgap="30.0" layoutX="73.0" layoutY="340.0" prefHeight="80.0" prefWidth="604.0">
+            <GridPane hgap="30.0" layoutX="70.0" layoutY="295.0" prefHeight="80.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -96,8 +62,8 @@
                   <ChoiceBox fx:id="aDropBox" prefHeight="27.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Label fx:id="aSubTitle" layoutX="70.0" layoutY="455.0" text="Loing information" />
-            <GridPane hgap="50.0" layoutX="72.0" layoutY="504.0" prefHeight="80.0" prefWidth="604.0">
+            <Label fx:id="aSubTitle" layoutX="71.0" layoutY="388.0" text="Loing information" />
+            <GridPane hgap="50.0" layoutX="73.0" layoutY="437.0" prefHeight="80.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -112,9 +78,9 @@
                   <PasswordField fx:id="aConformPass" promptText="Conform password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Separator layoutX="70.0" layoutY="151.0" prefWidth="608.0" />
-            <Separator layoutX="70.0" layoutY="479.0" prefWidth="608.0" />
-            <GridPane hgap="20.0" layoutX="354.0" layoutY="637.0" prefHeight="40.0" prefWidth="322.0">
+            <Separator layoutX="71.0" layoutY="111.0" prefWidth="608.0" />
+            <Separator layoutX="71.0" layoutY="412.0" prefWidth="608.0" />
+            <GridPane hgap="20.0" layoutX="354.0" layoutY="556.0" prefHeight="40.0" prefWidth="322.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -128,28 +94,34 @@
                </children>
             </GridPane>
          </children></Pane>
-      <Pane fx:id="aHomeLeftPane" prefHeight="745.0" prefWidth="272.0">
+      <Pane fx:id="aHomePane" layoutX="272.0" layoutY="96.0" prefHeight="649.0" prefWidth="927.0">
          <children>
-            <MenuBar prefHeight="39.0" prefWidth="271.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <Pane layoutX="-1.0" layoutY="81.0" prefHeight="200.0" prefWidth="272.0">
+            <TableView fx:id="aUserTable" layoutX="14.0" layoutY="84.0" prefHeight="516.0" prefWidth="643.0">
+              <columns>
+                <TableColumn fx:id="userID" prefWidth="99.0" resizable="false" text="EMP ID" />
+                <TableColumn fx:id="name" prefWidth="157.0" resizable="false" text="NAME" />
+                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="191.0" resizable="false" text="EMAIL" />
+                  <TableColumn fx:id="phone" prefWidth="115.0" resizable="false" text="PHONE" />
+                  <TableColumn fx:id="type" prefWidth="77.0" resizable="false" text="USER TYPE" />
+              </columns>
+            </TableView>
+            <TableView fx:id="aClassTable" layoutX="665.0" layoutY="84.0" prefHeight="309.0" prefWidth="256.0">
+              <columns>
+                <TableColumn fx:id="classID" prefWidth="85.0" text="CLASS ID" />
+                <TableColumn fx:id="className" prefWidth="170.0" text="CLASS NAME" />
+              </columns>
+            </TableView>
+            <TableView fx:id="aTacherTable" layoutX="665.0" layoutY="413.0" prefHeight="186.0" prefWidth="256.0">
+               <columns>
+                  <TableColumn prefWidth="98.0" text="C1" />
+                  <TableColumn prefWidth="157.0" text="C2" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane fx:id="aHomeLeftPane" layoutY="37.0" prefHeight="708.0" prefWidth="272.0">
+         <children>
+            <Pane fx:id="aMainPane" layoutY="59.0" prefHeight="200.0" prefWidth="272.0">
                <children>
                   <Label fx:id="leftSubTitle" layoutX="14.0" layoutY="14.0" text="Main">
                      <font>
@@ -188,7 +160,7 @@
                   </GridPane>
                </children>
             </Pane>
-            <Pane fx:id="aUpdatePane" layoutY="315.0" prefHeight="200.0" prefWidth="272.0">
+            <Pane fx:id="aUpdatePane" layoutY="259.0" prefHeight="200.0" prefWidth="272.0">
                <children>
                   <Label fx:id="leftSubTitle" layoutX="14.0" layoutY="14.0" text="Update">
                      <font>
@@ -228,6 +200,48 @@
                   </GridPane>
                </children>
             </Pane>
+         </children>
+      </Pane>
+      <MenuBar prefHeight="39.0" prefWidth="1200.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#singOut" prefWidth="80.0" text="Logout">
+                     <padding>
+                        <Insets top="-2.0" />
+                     </padding>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Pane fx:id="aHomeTopPane" layoutX="-1.0" layoutY="39.0" prefHeight="57.0" prefWidth="1200.0">
+         <children>
+            <TextField fx:id="aSearchField" layoutX="930.0" layoutY="9.0" prefHeight="40.0" prefWidth="256.0" promptText="I'm looking for...">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <ImageView fx:id="aSearchFieldIcon" fitHeight="33.0" fitWidth="65.0" layoutX="1143.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icon/search_white.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
