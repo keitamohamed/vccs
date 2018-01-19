@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -49,6 +50,12 @@
                   <TableColumn fx:id="cYear" prefWidth="102.0" text="YEAR" />
               </columns>
             </TableView>
+            <TextField layoutX="627.0" layoutY="8.0" prefHeight="40.0" prefWidth="224.0" />
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="809.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icon/find.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <MenuBar prefHeight="39.0" prefWidth="1000.0">

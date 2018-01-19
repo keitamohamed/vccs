@@ -2,7 +2,7 @@ package com.keita.vccs.controller;
 
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 
 public class FinalGrade {
 
-    private Message message = new Message();
+    private Notify message = new Notify();
 
     @FXML private TreeTableView<Record> table;
     @FXML private TreeTableColumn<Record, String> empColumn, cIDColumn, nameColumn;
@@ -69,7 +69,7 @@ public class FinalGrade {
                         unitesT.getText(), gradeColumnT.getText(), tTerm.getText(),
                         Integer.toString(datePicker.getValue().getYear()));
             } else {
-                Message.errorRequire("Field's Require", ("All filed's are require. " +
+                Notify.errorRequire("Field's Require", ("All filed's are require. " +
                         "Please make sure all field have a value."));
             }
         });

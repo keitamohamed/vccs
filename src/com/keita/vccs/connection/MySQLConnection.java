@@ -1,6 +1,6 @@
 package com.keita.vccs.connection;
 
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class MySQLConnection implements ConnectionType {
     private String driverName;
     private String url;
 
-    private Message message = new Message();
+    private Notify message = new Notify();
 
     @Override
     public Connection mysql() throws ClassNotFoundException, IOException {
@@ -38,10 +38,10 @@ public class MySQLConnection implements ConnectionType {
         }
         catch (IllegalAccessException e) {
             String errorM = "IllegalAccessException.\n" + e.getStackTrace();
-            Message.errorRequire("Illegal Access Exception", errorM);
+            Notify.errorRequire("Illegal Access Exception", errorM);
         } catch (InstantiationException e) {
             String errorM = "InstantiationException.\n" + e.getStackTrace();
-            Message.errorRequire("Instantiation Exception", errorM);
+            Notify.errorRequire("Instantiation Exception", errorM);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -54,7 +54,7 @@ public class MySQLConnection implements ConnectionType {
         catch (SQLException | NullPointerException sql) {
             String errorM = "Not able to connect to the database. " +
                     "Please make server username and password are correct. " + sql.getMessage();
-            Message.errorRequire("Error Connecting", errorM);
+            Notify.errorRequire("Error Connecting", errorM);
         }
         return connection;
     }
@@ -78,7 +78,7 @@ public class MySQLConnection implements ConnectionType {
             url = prop.getProperty("url");
 
         } catch (Exception e) {
-            Message.errorRequire("IO-Exception", e.getMessage());
+            Notify.errorRequire("IO-Exception", e.getMessage());
         } finally {
             assert inputStream != null;
             inputStream.close();

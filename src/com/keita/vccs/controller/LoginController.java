@@ -1,22 +1,18 @@
 package com.keita.vccs.controller;
 
 import com.keita.vccs.connection.MySQLConnection;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.stage.StageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -24,7 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LoginController {
-    private Message message = new Message();
+    private Notify message = new Notify();
     private SQLStatement statement = new SQLStatement();
 
     private Connection connect = null;
@@ -89,7 +85,7 @@ public class LoginController {
             return true;
         }
         String eMessage = "You must filed out all filed.";
-        Message.errorRequire("Filed Require", eMessage);
+        Notify.errorRequire("Filed Require", eMessage);
         return false;
     }
 

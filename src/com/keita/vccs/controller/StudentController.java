@@ -4,12 +4,10 @@ import com.keita.vccs.stage.StageManager;
 import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.util.Utility;
 import com.keita.vccs.util.Validation;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,12 +17,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.util.Callback;
 
 public class StudentController extends LoginController {
     public static String userID, userType;
 
-    @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, grade, titleGA;
+    @FXML private Label sEmpL, sTechEMPL, sClassIDL, sAssNameL, titleGA;
     @FXML private TextField empT, techIDT, classIDT, aNameT, search;
     @FXML private TextArea assignment;
     @FXML private Button addClass, assignmentB, choseFile, submitB;
@@ -81,11 +78,11 @@ public class StudentController extends LoginController {
                     !classIDT.getText().equals("") && !Validation.classExist(classes, classIDT.getText())) {
                 register(empT.getText(), techIDT.getText(), classIDT.getText(), aNameT);
                 loadData();
-                Message.errorRequire("Successfully Added", (classIDT.getText() + " was " +
+                Notify.errorRequire("Successfully Added", (classIDT.getText() + " was " +
                         "successfully added to your class list"));
             }
             else {
-                Message.errorRequire("Not Added", (classIDT.getText() + " was not added to your class " +
+                Notify.errorRequire("Not Added", (classIDT.getText() + " was not added to your class " +
                         "list because you are\nalready resisted in this class."));
             }
         });
@@ -155,18 +152,22 @@ public class StudentController extends LoginController {
 
         FilteredList<Grade> filteredScoreData = new FilteredList<>(scores, p -> true);
 
-        search.textProperty().addListener((observable, oldValue, newValue) -> filteredScoreData.setPredicate(score -> {
-            // If filter text is empty, display all persons.
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
 
-            // Compare first name and last name of every user with filter text.
-            String lowerCaseFilter = newValue.toLowerCase();
+            filteredScoreData.setPredicate(score -> {
 
-            return score.getClassID().toLowerCase().contains(lowerCaseFilter) ||
-                    score.getScoreName().toLowerCase().contains(lowerCaseFilter);
-        }));
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every user with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                return score.getClassID().toLowerCase().contains(lowerCaseFilter) ||
+                        score.getScoreName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
 
         // 3. Wrap the FilteredList in a SortedList.
         SortedList<Grade> sortedData = new SortedList<>(filteredScoreData);

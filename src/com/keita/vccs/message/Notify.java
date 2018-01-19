@@ -2,20 +2,15 @@ package com.keita.vccs.message;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
-public class Message {
+public class Notify {
     private static Alert al;
     private static Notifications nf;
 
-    public Message (){}
-
-    public static void successfult(String title, String message) {
-        Message.successfult(title, message);
-    }
+    public Notify(){}
 
 
     public static void errorRequire(String title, String message) {
@@ -26,8 +21,8 @@ public class Message {
         al.showAndWait();
     }
 
-    public void notification(String title, String message) {
-        ImageView view = new ImageView(getClass().getResource("../images/errorRequire.png").toExternalForm());
+    public static void notification(String title, String message) {
+        ImageView view = new ImageView(Notify.class.getResource("../images/error.png").toExternalForm());
         view.setFitHeight(80);
         view.setFitWidth(80);
 
@@ -51,8 +46,8 @@ public class Message {
                 .show();
     }
 
-    public void updateSuccessful(String title, String message) {
-        ImageView view = new ImageView(getClass().getResource("../images/Ok.png").toExternalForm());
+    public static void successful(String title, String message) {
+        ImageView view = new ImageView(Notify.class.getResource("../images/Ok.png").toExternalForm());
         Notifications.create()
                 .darkStyle()
                 .title(title)

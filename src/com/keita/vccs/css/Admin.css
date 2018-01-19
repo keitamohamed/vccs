@@ -4,7 +4,7 @@
     -fx-font-style: italic;
 }
 
-.button {
+#aNewUserPane .button {
     -fx-text-fill: #fff;
     -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
     -fx-font-size: 18px;

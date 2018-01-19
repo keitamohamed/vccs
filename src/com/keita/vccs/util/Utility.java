@@ -4,7 +4,7 @@ import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.controller.StudentController;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import com.keita.vccs.sql.SQLStatement;
 import com.keita.vccs.calculate.Calculation;
 import javafx.collections.FXCollections;
@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 
 public class Utility extends Calculation{
-    private Message msg = new Message();
-    private static Message ms = new Message();
+    private Notify msg = new Notify();
+    private static Notify ms = new Notify();
     private Export export = new Export();
 
     private static SQLStatement statements = new SQLStatement();
@@ -53,7 +53,7 @@ public class Utility extends Calculation{
             letterGrade.setText(calculateLetterGrade(grade));
 
         }catch (NumberFormatException nf) {
-            Message.errorRequire("Number Format Exception", "Please enter a number. " +
+            Notify.errorRequire("Number Format Exception", "Please enter a number. " +
                     "Not a String or character.");
         }
 
@@ -69,7 +69,7 @@ public class Utility extends Calculation{
             }
 
         }catch (NumberFormatException nf) {
-            Message.errorRequire("Number Format Exception", "Please enter a number. " +
+            Notify.errorRequire("Number Format Exception", "Please enter a number. " +
                     "Not a String or character.");
         }
     }
@@ -87,7 +87,7 @@ public class Utility extends Calculation{
 
     public void exportStudentGrade() {
         export.exportStudentGrade(scoreTables);
-        Message.errorRequire("Successfully Exported", "Date was exported successfully as an excel file");
+        Notify.errorRequire("Successfully Exported", "Date was exported successfully as an excel file");
     }
 
     private static void addRecord(String emp, String classID, String name, String classNme) {

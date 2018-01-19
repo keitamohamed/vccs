@@ -4,7 +4,7 @@ import com.keita.vccs.blueprint.OtherClasses;
 import com.keita.vccs.blueprint.*;
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.connection.MySQLConnection;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
@@ -16,12 +16,10 @@ import java.sql.*;
 
 public class SQLStatement {
     private static MySQLConnection connect = new MySQLConnection();
-    private static Message msg = new Message();
     private static SQLQuery query = new SQLQuery();
 
     private static Connection connection;
     private static PreparedStatement pStatement;
-    private static Statement statement;
 
 
     public String login(String username, String password, ChoiceBox<String> userType) {
@@ -47,20 +45,20 @@ public class SQLStatement {
             String message = "Username: " + username + ", password " + password +
                     " user type " + userType.getValue() + " is in correct." +
                     " " + ex.getMessage();
-            msg.notification("Login Error/No-Match", message);
+            Notify.notification("Login Error/No-Match", message);
 
         } finally {
             try {
                 closeConnection();
             } catch (SQLException sql) {
                 String message = "An SQL-Exception: " + sql.getMessage();
-                Message.errorRequire("SQL-Exception", message);
+                Notify.errorRequire("SQL-Exception", message);
             }
         }
         return id;
     }
 
-    public static ObservableList<User> loadDate(ObservableList<User> users, ObservableList<Class> classes) {
+    public static void loadDate(ObservableList<User> users, ObservableList<Class> classes) {
         connection = null;
         pStatement = null;
 
@@ -89,7 +87,6 @@ public class SQLStatement {
         } catch (IOException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return users;
     }
 
     public ObservableList<OtherClasses> loadDate(ObservableList<Teacher> teachers, ObservableList<Class>
@@ -251,7 +248,7 @@ public class SQLStatement {
                 }
             }
         } catch (ClassNotFoundException | SQLException | IOException not) {
-            msg.notification("SQL Or IO Exception", not.getMessage());
+            Notify.notification("SQL Or IO Exception", not.getMessage());
             not.fillInStackTrace();
 
         } finally {
@@ -294,7 +291,7 @@ public class SQLStatement {
             }
         }
         catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -328,7 +325,7 @@ public class SQLStatement {
             }
         }
         catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -359,7 +356,7 @@ public class SQLStatement {
 
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -389,7 +386,7 @@ public class SQLStatement {
             pStatement.executeUpdate();
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -435,16 +432,16 @@ public class SQLStatement {
                 pStatement.setString(8, year);
                 pStatement.executeUpdate();
 
-                Message.successfult("Successfully Inserted", ("Grade was added successfully " +
+                Notify.successful("Successfully Inserted", ("Grade was added successfully " +
                         "for " + sName));
             }else {
-                Message.exist("Record Exist",
+                Notify.exist("Record Exist",
                         ("Couldn't submit " + sName + " final " + cName + " grade because\n" +
                                 "it already exist in the recode. Contact Admin for further assistance."));
             }
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -470,7 +467,7 @@ public class SQLStatement {
             pStatement.executeUpdate();
 
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Message.errorRequire("IO OR SQL Exception", ex.getMessage());
+            Notify.errorRequire("IO OR SQL Exception", ex.getMessage());
 
         } finally {
             try {
@@ -485,11 +482,6 @@ public class SQLStatement {
     private static void closeConnection() throws SQLException {
         if (pStatement != null) {
             pStatement.close();
-            connection.close();
-        }
-
-        if (statement != null) {
-            statement.close();
             connection.close();
         }
     }

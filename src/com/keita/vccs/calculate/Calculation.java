@@ -2,12 +2,12 @@ package com.keita.vccs.calculate;
 
 import com.keita.vccs.blueprint.Class;
 import com.keita.vccs.blueprint.*;
-import com.keita.vccs.message.Message;
+import com.keita.vccs.message.Notify;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public abstract class Calculation {
-    private static Message msg = new Message();
+    private static Notify msg = new Notify();
     private static ObservableList<AddingPoint> addingPoints = FXCollections.observableArrayList();
 
     public static int addScore(ObservableList<ScoreTable> scoreTables, String emp, String classID, int num) {
@@ -35,7 +35,7 @@ public abstract class Calculation {
                     "total number of (Test + Assignment + Home-work + Mid-term and Exam) is " +
                     "" + counter + ". Ether enter a number less then " + counter + " or the " +
                     "student grade will be reset back.";
-            Message.errorRequire("Invalid Input", message);
+            Notify.errorRequire("Invalid Input", message);
         }
         return addScore(scoreTables, emp, classID);
     }
@@ -132,7 +132,7 @@ public abstract class Calculation {
 
     public static String calculateLetterGrade(int grade) {
         if (grade > 110) {
-            Message.errorRequire("Instructor Error", ("You make an errorRequire. " +
+            Notify.errorRequire("Instructor Error", ("You make an errorRequire. " +
                     "Student can't have " + grade + " it must be 110 " +
                     "or lower then that." ));
         }
