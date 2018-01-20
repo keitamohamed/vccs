@@ -7,6 +7,7 @@ USE VWCC;
 CREATE TABLE User(
   UserID INT NOT NULL,
   Name VARCHAR(60) NOT NULL,
+  DOB DATE NOT NULL,
   Email VARCHAR(60) NOT NULL,
   Phone VARCHAR(12) NOT NULL,
   Username VARCHAR (50) NOT NULL,
@@ -15,6 +16,21 @@ CREATE TABLE User(
 
   PRIMARY KEY (UserID)
 )ENGINE = innoDB;
+
+CREATE TABLE Address (
+  AddressID INT NOT NULL AUTO_INCREMENT,
+  UserEMPID INT NOT NULL,
+  Stree_Address VARCHAR(60) NOT NULL,
+  City_County VARCHAR(50) NOT NULL,
+  State VARCHAR(20) NULL,
+  Zip_Code VARCHAR(10) NULL,
+  Country VARCHAR(50) NOT NULL,
+
+  PRIMARY KEY (AddressID),
+
+  CONSTRAINT UserEMPID_fk FOREIGN KEY (UserEMPID) REFERENCES User (UserID)
+
+)ENGINE  = innoDB;
 
 CREATE TABLE Admin(
   AdminID INT NOT NULL,
@@ -103,18 +119,33 @@ CREATE TABLE Record(
 
 )ENGINE = innoDB;
 
-INSERT INTO User (UserID, Name, Email, Phone, Username, UPassword, UserType)
-    VALUE (67531, 'Dr. Wolff', 'dWolff@email.com', '673-23-8934', 'dWolff',
+INSERT INTO User (UserID, Name, DOB,  Email, Phone, Username, UPassword, UserType)
+    VALUE (67531, 'Dr. Wolff', '1964-03-26', 'dWolff@email.com', '673-23-8934', 'dWolff',
            '!2Diane',  'Teacher'),
-  (96431, 'P. Jeff', 'djeff@email.com', '540-452-1110', 'dJeff', 'Jeffd134', 'Teacher'),
-  (65011, 'Dr. Smith', 'dsmaith23@email.com', '980-876-0012', 'dSmith', 'Smith!7', 'Teacher'),
-  (80234, 'P. Fosdal', 'fosdal54@email.com', '704-103-7734', 'fosdal23', 'Peter34!', 'Teacher'),
-  (67344, 'Tarnue Jallah', 'tarnue34@email.com', '704-23-8934', 'jallah', 'Tarnuej', 'Student'),
-  (76002, 'Ashely William', 'w78342@email.com', '897-201-3244', 'Awilliam', 'Washely^', 'Student'),
-  (76098, 'Mohamed Keita', 'mk24238@email.com', '784-212-8000', 'mk24238', '12Keita', 'Student'),
-  (72201, 'Melanie Crouch', 'crouch780@email.com', '540-111-8900', 'mcrouch89', '#crouchM', 'Teacher'),
-  (65003, 'P. Jodi Clingenpeel', 'jodi623@email.com', '562-907-4623', 'jc78342', '&8jodi', 'Teacher'),
-  (542310, 'Lacey Peterson', 'lperson@email.com', '562-523-9034', '1', '1', 'Admin');;
+  (96431, 'P. Jeff', '1972-05-15', 'djeff@email.com', '540-452-1110', 'dJeff', 'Jeffd134', 'Teacher'),
+  (65011, 'Dr. Smith', '1982-07-05', 'dsmaith23@email.com', '980-876-0012', 'dSmith', 'Smith!7', 'Teacher'),
+  (80234, 'P. Fosdal', '1968-05-26', 'fosdal54@email.com', '704-103-7734', 'fosdal23', 'Peter34!', 'Teacher'),
+  (67344, 'Tarnue Jallah', '1991-09-08', 'tarnue34@email.com', '704-23-8934', 'jallah', 'Tarnuej', 'Student'),
+  (76002, 'Ashely William', '1996-08-17', 'w78342@email.com', '897-201-3244', 'Awilliam', 'Washely^', 'Student'),
+  (76098, 'Mohamed Keita', '1995-07-12', 'mk24238@email.com', '784-212-8000', 'mk24238', '12Keita', 'Student'),
+  (72201, 'Melanie Crouch', '1988-12-12', 'crouch780@email.com', '540-111-8900', 'mcrouch89', '#crouchM', 'Teacher'),
+  (65003, 'P. Jodi Clingenpeel', '1978-04-23', 'jodi623@email.com', '562-907-4623', 'jc78342', '&8jodi', 'Teacher'),
+  (542310, 'Lacey Peterson', '1962-11-01', 'lperson@email.com', '562-523-9034', '1', '1', 'Admin');
+
+INSERT INTO Address (UserEMPID, Stree_Address, City_County, State, Zip_Code, Country)
+    VALUE
+  (67344, '4513 East Way Dr', 'Charlotte', 'NC', '25314', 'USA'),
+  (76002, '8921 Broadway Street NW Apt 45 B', 'New York', 'NY', '76341', 'USA'),
+  (76098, '7823 Campbell Ave SW', 'Roanoke', 'VA', '24617', 'USA'),
+  (67531, '672 James Town Rd', 'Roanoke', 'VA', '24078', 'USA'),
+  (96431, '653, Electric Rd', 'Roanoke', 'VA', '24516', 'USA'),
+  (65011, '8923 Williamson Rd', 'Roanoke', 'VA', '24367', 'USA'),
+  (80234, '6723 Sugar Creek', 'Roanoke', 'VA', '24617', 'USA'),
+  (72201, '8912 Peter Creek Rd', 'Roanoke', 'VA', '25167', 'USA'),
+  (542310, '6500 10th Street', 'Roanoke', 'VA', '24093', 'USA'),
+  (65003, '9656 Indian Ave', 'Roanoke', 'VA', '24561', 'USA');
+
+
 
 INSERT INTO Class (ClassID, CTEMPID, Class_Name, Description)
     VALUE ('ITP 120', 67531, 'Java Programming I', 'NA'),
@@ -127,7 +158,6 @@ INSERT INTO Class (ClassID, CTEMPID, Class_Name, Description)
   ('ITP 146', 72201, 'Client Side Scripting', 'NA'),
   ('ITP 246', 72201, 'Web Scripting Languages', 'NA'),
   ('ITP 220', 67531, 'Java Programming II', 'NA');
-
 INSERT INTO Teacher (TEMPID, TClassID)
   VALUE (67531, 'ITP 120'),
   (67531, 'ITP 220'),
@@ -167,6 +197,7 @@ INSERT INTO Record(SEMPID, Class_ID, Student_Name, Class_Name, Unite, Grade, Ter
     (76098, 'MTH 161', 'Mohamed', 'PreCalculus I', 3, 'B', 'Fall', '2012'),
     (76098, 'BIO 200', 'Mohamed', 'Human Anatomy & Physiology 2', 4, 'C', 'Fall', '2015');
 
+ALTER TABLE Address AUTO_INCREMENT = 01;
 ALTER TABLE Admin AUTO_INCREMENT = 011;
 ALTER TABLE Teacher AUTO_INCREMENT = 20;
 ALTER TABLE Class AUTO_INCREMENT = 011;

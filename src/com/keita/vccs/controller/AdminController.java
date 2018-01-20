@@ -20,7 +20,7 @@ public class AdminController extends LoginController{
 
     @FXML private Button aClear, aSubmit;
 
-    @FXML private Pane aHomePane, aNewUserPane;
+    @FXML private Pane aHomePane, aNewUserPane, aNewClassPane;
     @FXML private TableView<User> aUserTable;
     @FXML private TableView<Class> aClassTable;
     @FXML private TextField aSearchField;
@@ -31,6 +31,10 @@ public class AdminController extends LoginController{
     @FXML private PasswordField aPassword, aConformPass;
     @FXML private DatePicker aDatePicker;
     @FXML private ChoiceBox aDropBox;
+
+    // New Class registration variables
+    @FXML private TextField aNewClassID, aNewClassName;
+    @FXML private TextArea aNewClassDesc;
 
     @FXML private TableColumn<User, String> userID, name, email, phone, type;
     @FXML private TableColumn<Class, String> classID, className;
@@ -116,12 +120,20 @@ public class AdminController extends LoginController{
     private void dashboard() {
         aHomePane.setVisible(true);
         aNewUserPane.setVisible(false);
+        aNewClassPane.setVisible(false);
     }
 
     @FXML
     private void newUser() {
         aNewUserPane.setVisible(true);
         aHomePane.setVisible(false);
+        aNewClassPane.setVisible(false);
+    }
+
+    @FXML void newClass() {
+        aNewClassPane.setVisible(true);
+        aHomePane.setVisible(false);
+        aNewUserPane.setVisible(false);
     }
 
     @Override

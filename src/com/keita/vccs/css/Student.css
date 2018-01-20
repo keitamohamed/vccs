@@ -156,7 +156,7 @@
 
 /*For profile and GPA stage*/
 
-#gEmp, #gName, #pEmailL, #pPhoneL {
+#profileInfoPane .label {
     -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
@@ -164,7 +164,7 @@
 
 #pEmpT, #pNameT, #pEmailT, #pPhoneT, #pAddress, #pCity, #pState, #pZip, #pCountry {
     -fx-font-family: "Times New Roman";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
 }
 
 #cEmpL, #cNameL, #cEmailL, #cNumL {
@@ -172,6 +172,8 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
+
+
 
 #cEmpT, #cNameT, #cEmailT, #cNumT {
     -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
