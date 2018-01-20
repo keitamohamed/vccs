@@ -13,10 +13,51 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.keita.vccs.controller.AdminController">
    <children>
+      <Pane fx:id="aNewClass" layoutX="273.0" layoutY="96.0" prefHeight="649.0" prefWidth="927.0">
+         <children>
+            <Label fx:id="aTitle" layoutX="448.0" layoutY="40.0" text="NEW CLASS REGISTRATION" />
+            <GridPane layoutX="62.0" layoutY="179.0" prefHeight="192.0" prefWidth="300.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="298.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField promptText="Enter class id" />
+                  <TextField promptText="Enter class name" GridPane.rowIndex="1" />
+                  <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Enter class description" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <TableView layoutX="402.0" layoutY="179.0" prefHeight="325.0" prefWidth="439.0">
+              <columns>
+                <TableColumn prefWidth="96.0" text="EMP ID" />
+                <TableColumn prefWidth="141.0" text="NAME" />
+                  <TableColumn prefWidth="201.0" text="EMAIL ADDRESS" />
+              </columns>
+            </TableView>
+            <Label fx:id="text" layoutX="62.0" layoutY="125.0" text="Please make sure to fill out all information. If you want to assignment a teacher to this class, select the teacher from the table" />
+            <GridPane hgap="30.0" layoutX="402.0" layoutY="537.0" prefHeight="40.0" prefWidth="439.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="aCClear" mnemonicParsing="false" prefHeight="27.0" prefWidth="204.0" text="Clear" />
+                  <Button fx:id="aCSubmit" mnemonicParsing="false" prefHeight="27.0" prefWidth="204.0" text="Submit" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
       <Pane fx:id="aNewUserPane" layoutX="272.0" layoutY="96.0" prefHeight="649.0" prefWidth="927.0">
          <children>
-            <Label fx:id="aTitle" layoutX="289.0" layoutY="44.0" text="NEW USER REGISTRATION " />
-            <Label fx:id="aSubTitle" layoutX="71.0" layoutY="87.0" text="User information" />
+            <Label fx:id="aTitle" layoutX="286.0" layoutY="14.0" text="NEW USER REGISTRATION " />
+            <Label fx:id="aSubTitle" layoutX="68.0" layoutY="57.0" text="User information" />
             <GridPane hgap="30.0" layoutX="72.0" layoutY="128.0" prefHeight="115.0" prefWidth="604.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -78,7 +119,7 @@
                   <PasswordField fx:id="aConformPass" promptText="Conform password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Separator layoutX="71.0" layoutY="111.0" prefWidth="608.0" />
+            <Separator layoutX="68.0" layoutY="81.0" prefWidth="608.0" />
             <Separator layoutX="71.0" layoutY="412.0" prefWidth="608.0" />
             <GridPane hgap="20.0" layoutX="354.0" layoutY="556.0" prefHeight="40.0" prefWidth="322.0">
               <columnConstraints>
@@ -93,6 +134,10 @@
                   <Button fx:id="aSubmit" mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Submit" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <Label fx:id="selectType" layoutX="73.0" layoutY="98.0" text="Select user type" />
+            <CheckBox fx:id="admin" layoutX="232.0" layoutY="98.0" mnemonicParsing="false" text="Admin" />
+            <CheckBox fx:id="teacher" layoutX="378.0" layoutY="98.0" mnemonicParsing="false" text="Teacher" />
+            <CheckBox fx:id="student" layoutX="515.0" layoutY="98.0" mnemonicParsing="false" text="Student" />
          </children></Pane>
       <Pane fx:id="aHomePane" layoutX="272.0" layoutY="96.0" prefHeight="649.0" prefWidth="927.0">
          <children>
@@ -143,17 +188,17 @@
                         <Button fx:id="aNewClass" alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="206.0" text="ADD NEW CLASS" GridPane.rowIndex="2" />
                         <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/icon/home.png" />
+                              <Image url="@../images/icon/Dashboard_w.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@../images/icon/add.png" />
+                              <Image url="@../images/icon/Person_Add_w.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../images/icon/class.png" />
+                              <Image url="@../images/icon/Add_Circle_w.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -174,17 +219,17 @@
                         <Button fx:id="aDeleteClass" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" text="DELETE CLASS" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>
-                              <Image url="@../images/icon/Edit.png" />
+                              <Image url="@../images/icon/Edit_w.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@../images/icon/Delete_Person.png" />
+                              <Image url="@../images/icon/Person_Delete_W.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../images/icon/Delete_Forever.png" />
+                              <Image url="@../images/icon/Delete_w.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -232,7 +277,7 @@
       </MenuBar>
       <Pane fx:id="aHomeTopPane" layoutX="-1.0" layoutY="39.0" prefHeight="57.0" prefWidth="1200.0">
          <children>
-            <TextField fx:id="aSearchField" layoutX="930.0" layoutY="9.0" prefHeight="40.0" prefWidth="256.0" promptText="I'm looking for...">
+            <TextField fx:id="aSearchField" layoutX="930.0" layoutY="9.0" prefHeight="40.0" prefWidth="256.0" promptText="Find user with...">
                <effect>
                   <DropShadow />
                </effect>

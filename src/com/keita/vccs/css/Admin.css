@@ -4,6 +4,11 @@
     -fx-font-style: italic;
 }
 
+#aNewUserPane .check-box {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 14px;
+}
+
 #aHomeLeftPane, #aHomeTopPane {
     -fx-background-image: url('../images/blue-sky.jpg');
     -fx-background-repeat: no-repeat;
@@ -64,16 +69,20 @@
     -fx-background-color: #9F0B32;
 }
 
-/*#aSearchField:hover {*/
-    /*-fx-pref-width: 200px;*/
-/*}*/
-
 #aTitle {
-    -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
-    -fx-font-size: 18px;
+    -fx-font-family: Baskerville, 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: bolder;
 }
 
 #aSubTitle {
     -fx-font-family: "Times New Roman";
     -fx-font-size: 18px;
+    -fx-font-style: italic;
+}
+
+#selectType {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
 }
