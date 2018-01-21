@@ -46,15 +46,15 @@
                   <Label fx:id="pEmpT" text="No-ID" GridPane.columnIndex="1" />
                   <Label fx:id="gEmp" text="STUDENT EMP" textFill="#141414" />
                   <Label fx:id="gName" text="FULL NAME" GridPane.rowIndex="1" />
-                  <Label text="ADDRESS" GridPane.rowIndex="3" />
+                  <Label fx:id="pAddressL" text="ADDRESS" GridPane.rowIndex="3" />
                   <Label fx:id="pAddress" text="No-Address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="CITY OR COUNTY" GridPane.rowIndex="4" />
+                  <Label fx:id="pCityL" text="CITY OR COUNTY" GridPane.rowIndex="4" />
                   <Label fx:id="pCity" text="No-City" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="STATE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="pStateL" text="STATE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label fx:id="pState" text="No-State" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <Label text="ZIP-CODE" GridPane.rowIndex="5" />
+                  <Label fx:id="pZipL" text="ZIP-CODE" GridPane.rowIndex="5" />
                   <Label fx:id="pZip" text="No-Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="COUNTRY" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="pCountryL" text="COUNTRY" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Label fx:id="pCountry" text="No-Country" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                </children>
                <padding>

@@ -52,23 +52,23 @@ public class LoginController {
         userType.setItems(type);
         switch (userType.getValue()) {
             case "Admin":
-                userStage(event, "../fxml/Admin.fxml", "Admin Dashboard");
+                userStage(event,"Admin Dashboard");
                 break;
             case "Teacher":
-                userStage(event, "../fxml/Teacher.fxml", "Teacher Dashboard");
+                userStage(event,"Teacher Dashboard");
                 break;
             case "Student":
-                userStage(event, "../fxml/Student.fxml", "Student Dashboard");
+                userStage(event,"Student Dashboard");
         }
     }
 
     @FXML
-    public void userStage(Event event, String fxml, String title) throws ClassNotFoundException, IOException {
+    public void userStage(Event event, String title) throws ClassNotFoundException, IOException {
         String userID = checkLogin(lUsernameT.getText().trim(),
                 lPasswordT.getText().trim());
         if (isFiledOut() && connectCheck() != null && userID != null) {
             String selectedType = userType.getSelectionModel().getSelectedItem();
-            StageManager.switchStage(event, fxml, userID, selectedType, title);
+            StageManager.switchStage(event, userID, selectedType, title);
         }
     }
 

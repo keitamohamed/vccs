@@ -44,7 +44,7 @@
               <items>
                 <MenuItem mnemonicParsing="false">
                      <graphic>
-                        <Button fx:id="gpaButton" mnemonicParsing="false" onAction="#profileFXM" text="GPA" />
+                        <Button fx:id="gpaButton" mnemonicParsing="false" onAction="#profileFXM" text="Profile and GPA" />
                      </graphic>
                   </MenuItem>
                   <MenuItem mnemonicParsing="false">

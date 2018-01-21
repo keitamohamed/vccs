@@ -17,18 +17,17 @@ import java.io.IOException;
 public class StageManager {
 
     @FXML
-    public static void switchStage(Event event, String fxml, String userID, String userType, String title) {
+    public static void switchStage(Event event, String userID, String userType, String title) {
         try {
-            AnchorPane root = FXMLLoader.load(StageManager.class.getResource(fxml));
+            AnchorPane root = FXMLLoader.load(StageManager.class.getResource(getFXML(userType)));
             sendID(userID, userType);
             Scene tScene = new Scene(root);
             Stage tStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             tStage.setScene(tScene);
             tStage.setTitle(title);
             tStage.setResizable(false);
-            tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Admin.css").toExternalForm());
+            tStage.getScene().getStylesheets().add(StageManager.class.getResource(getCSS(userType)).toExternalForm());
             tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Table.css").toExternalForm());
-            tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Main.css").toExternalForm());
             tStage.getScene().getStylesheets().add(StageManager.class.getResource("../css/Message.css").toExternalForm());
             tStage.show();
         }
@@ -59,6 +58,29 @@ public class StageManager {
             io.printStackTrace();
             System.out.println("IO-Exception " + io.fillInStackTrace());
         }
+    }
+
+    private static String getFXML(String userType) {
+        switch (userType) {
+            case "Admin":
+                return "../fxml/Admin.fxml";
+            case "Teacher":
+                return "../fxml/Teacher.fxml";
+            case "Student":
+                return "../fxml/Student.fxml";
+        }
+        return null;
+    }
+
+    private static String getCSS(String userType) {
+        switch (userType) {
+            case "Admin":
+                return "../css/Admin.css";
+            case "Teacher":
+            case "Student":
+                return "../css/Main.css";
+        }
+        return null;
     }
 
     @FXML

@@ -156,13 +156,15 @@
 
 /*For profile and GPA stage*/
 
-#gEmp, #gName, #pEmailL, #pPhoneL {
+#gEmp, #gName, #pEmailL, #pPhoneL, #pAddressL,
+#pCityL, #pZipL, #pStateL, #pCountryL {
     -fx-font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
-#pEmpT, #pNameT, #pEmailT, #pPhoneT, #pAddress, #pCity, #pState, #pZip, #pCountry {
+#pEmpT, #pNameT, #pEmailT, #pPhoneT, #pAddress,
+#pCity, #pState, #pZip, #pCountry {
     -fx-font-family: "Times New Roman";
     -fx-font-size: 14px;
 }

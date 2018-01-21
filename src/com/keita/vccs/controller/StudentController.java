@@ -252,7 +252,7 @@ public class StudentController extends LoginController {
 
     @FXML
     private void profileFXM() {
-        StageManager.switchScene("../fxml/GPA.fxml", "Student GPA");
+        StageManager.switchScene("../fxml/ProfileGPA.fxml", "Student GPA");
     }
 
     @FXML
