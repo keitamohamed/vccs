@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/vwcc.iml" filepath="$PROJECT_DIR$/vwcc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vwccs.iml" filepath="$PROJECT_DIR$/vwccs.iml" />
     </modules>
   </component>
 </project>
